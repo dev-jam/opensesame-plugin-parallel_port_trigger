@@ -1,4 +1,4 @@
-    OpenSesame Plugin: sends synchronization triggers through the parallel port to data acquisition systems. 
+    OpenSesame Plugin: sends stimulus synchronization triggers through the parallel port to data acquisition systems. 
     Copyright (C) 2013  Bob Rosbag
 
     This program is free software: you can redistribute it and/or modify
