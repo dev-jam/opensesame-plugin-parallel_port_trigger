@@ -1,15 +1,10 @@
-    OpenSesame Plugin: sends stimulus synchronization triggers through the parallel port to data acquisition systems. 
-    Copyright (C) 2013  Bob Rosbag
+LICENSE
+==========
 
-    This program is free software: you can redistribute it and/or modify
-    it under the terms of the GNU General Public License as published by
-    the Free Software Foundation, either version 3 of the License, or
-    (at your option) any later version.
+Parallel Port Trigger is distributed under the terms of the GNU General Public License 3.
+The full license should be included in the file COPYING, or can be obtained from
 
-    This program is distributed in the hope that it will be useful,
-    but WITHOUT ANY WARRANTY; without even the implied warranty of
-    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-    GNU General Public License for more details.
+- <http://www.gnu.org/licenses/gpl.txt>
 
-    You should have received a copy of the GNU General Public License
-    along with this program.  If not, see <http://www.gnu.org/licenses/>.
+Parallel Port Trigger contains works of others. For the full license information, please
+refer to `debian/copyright`.
