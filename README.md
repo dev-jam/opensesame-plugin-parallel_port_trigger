@@ -1,7 +1,7 @@
 OpenSesame Plugin: Parallel Port Trigger
 ==========
 
-*An OpenSesame Plugin for sending stimulus synchronization triggers through the parallel port to data acquisition systems*
+*OpenSesame Plugin for sending stimulus synchronization triggers through the parallel port to data acquisition systems.*
 Copyright, 2013, Bob Rosbag
 
 1. About
