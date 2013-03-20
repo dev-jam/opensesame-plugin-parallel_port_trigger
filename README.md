@@ -1,16 +1,20 @@
 OpenSesame Plugin: Parallel Port Trigger
 ==========
 
-*OpenSesame Plugin for sending stimulus synchronization triggers through the parallel port to data acquisition systems.*
-Copyright, 2013, Bob Rosbag, Edwin Dalmaijer
+*An OpenSesame Plugin for sending stimulus synchronization triggers through the parallel port to data acquisition systems.*
+Copyright, 2013, Bob Rosbag
 
 1. About
 --------
 
 This plugin can send synchronization triggers to psychophysiological measuring
 systems connected by the parallel port. Values range between 0-255.
+
 Microsoft Windows machines need to install DLPortIO driver. Parallel port adress
-has to be specified manually. - see <http://osdoc.cogsci.nl/>
+has to be specified manually. 
+
+- see <http://osdoc.cogsci.nl/devices/triggers/>
+
 
 2. LICENSE
 ----------
