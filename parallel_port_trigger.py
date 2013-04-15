@@ -78,8 +78,8 @@ class parallel_port_trigger(item.item):
 		self.description = "Allows setting pins on the parallel port"
 		
 		# Set some item-specific variables
-		self.value = 1
-		self.duration = 1
+		self.value = 0
+		self.duration = 500
 		self.port = "0x378"
 				
 		# The parent handles the rest of the contruction
@@ -234,9 +234,6 @@ class qtparallel_port_trigger(parallel_port_trigger, qtplugin.qtplugin):
 		self.add_spinbox_control("value", "Value", 0, 255, tooltip = "Value to set port")
 		self.add_line_edit_control("duration", "Duration", tooltip = "Expecting a value in milliseconds, 'keypress' or 'mouseclick'")
 		self.add_line_edit_control("port", "Port Adress (Windows only)", tooltip = "Adress of the parallel port in Windows")
-		
-		#if os.name == 'nt' : 
-		#	self.add_line_edit_control("port", "Port", tooltip = "Port adress of parallel port in Windows")
 
 		
 		# Add a stretch to the edit_vbox, so that the controls do not
