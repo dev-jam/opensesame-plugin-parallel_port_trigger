@@ -1,6 +1,6 @@
 """
 11-03-2013
-This based on io_port of Sebastiaan Mathot
+This based on io_port of Per Sederberg
 Author: Bob Rosbag
 Author: Edwin Dalmaijer
 
