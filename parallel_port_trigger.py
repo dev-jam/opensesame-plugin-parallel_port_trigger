@@ -32,22 +32,27 @@ import os
 
 import imp
 
-try:
-	if os.name == 'posix':
-		# import the local modified version of pyparallel
-		# that allows for non-exclusive connections to the parport
-		path_to_file = os.path.join(os.path.dirname(__file__), "parallelppdev.py")
-		parallel = imp.load_source('parallel', path_to_file)
+
+if os.name == 'posix':
+	# import the local modified version of pyparallel
+	# that allows for non-exclusive connections to the parport
+	path_to_file = os.path.join(os.path.dirname(__file__), "parallelppdev.py")
+	parallel = imp.load_source('parallel', path_to_file)
+	try: 
 		import parallelppdev as parallel
-	if os.name == 'nt' :
-		try:
-			from ctypes import windll
-		except ImportError:
-			warnings.warn("The parallel module could not load, please make sure you have installed ctypes.")
-	else:
+	except ImportError:
+		print("The local modified version of pyparallel could not be loaded. Check if the file is present and if the file permissions are correct.")
+if os.name == 'nt' :
+	try:
+		from ctypes import windll
+	except ImportError:
+		print("The ctypes module can not be loaded. Check if ctypes is installed correctly.")
+else:
+	try:
 		import parallel
-except ImportError:
-	warnings.warn("The parallel module could not load, please make sure you have installed pyparallel.")
+	except ImportError:
+		print("The pyparallel module could not be loaded, please make sure pyparallel is installed correctly.")
+		
 
 # we only want one instance of pp, so here's a global var
 
@@ -121,11 +126,10 @@ class parallel_port_trigger(item.item):
 			global _winpp
 			if _winpp is None:
 				try:
-					_winpp = windll.dlportio()
-					print('Successfully accessed the parallel port on adress: %s' % self.port)
+					_winpp = windll.dlportio
+					print('Successfully accessed the parallel port on address: %s' % self.port)
 				except OSError:
-					print('Could not access the parallel port on adress: %s' % self.port)
-					warnings.warn("Could not access the parallel port.")
+					print('Could not access the parallel port on address: %s' % self.port)
 			self.winpp = _winpp
 		else:
 			global _pp
@@ -135,7 +139,6 @@ class parallel_port_trigger(item.item):
 					print('Successfully accessed the parallel port (/dev/parport0).')
 				except OSError:
 					print('Could not access /dev/parport0.')
-					warnings.warn("Could not access /dev/parport0.")
 			self.pp = _pp
 
 		
