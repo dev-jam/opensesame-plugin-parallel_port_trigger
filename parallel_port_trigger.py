@@ -234,7 +234,7 @@ class qtparallel_port_trigger(parallel_port_trigger, qtplugin.qtplugin):
 		# - creates a QLineEdit		
 		# qtplugin.add_spinbox_control(varname, label, min, max, suffix = suffix, prefix = prefix)
 		
-		self.add_spinbox_control("value", "Value", 0, 255, tooltip = "Value to set port")
+		self.add_line_edit_control("value", "Value", tooltip = "Value to set port")
 		self.add_line_edit_control("duration", "Duration", tooltip = "Expecting a value in milliseconds, 'keypress' or 'mouseclick'")
 		self.add_line_edit_control("port", "Port Adress (Windows only)", tooltip = "Adress of the parallel port in Windows")
 
