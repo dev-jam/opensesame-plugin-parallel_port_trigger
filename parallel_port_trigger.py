@@ -1,5 +1,5 @@
 """
-11-03-2013
+25-06-2013
 This based on io_port of Per Sederberg
 Author: Bob Rosbag
 Author: Edwin Dalmaijer
@@ -160,10 +160,11 @@ class parallel_port_trigger(item.item):
 
 		if os.name == 'nt':
 			if not self.winpp is None:
-				self.set_item_onset(self.winpp.DlPortWritePortUchar(int(self.port,0), self.value))
+				self.set_item_onset(self.winpp.DlPortWritePortUchar(int(self.get("port"),0), self.get("value")))
+				print(self.get("value"))
 		else:
 			if not self.pp is None:
-				self.set_item_onset(self.pp.setData(self.value))
+				self.set_item_onset(self.pp.setData(self.get("value")))
 
 
 		t0 = self.time()
@@ -179,7 +180,7 @@ class parallel_port_trigger(item.item):
 		# unless duration was zero, turn it off
 		if os.name == 'nt':
 			if not self.winpp is None and self.duration !=0:
-				self.winpp.DlPortWritePortUchar(int(self.port,0), 0)
+				self.winpp.DlPortWritePortUchar(int(self.get("port"),0), 0)
 		
 		else:
 			if not self.pp is None and self.duration !=0:
