@@ -42,7 +42,7 @@ if os.name == 'posix':
 		import parallelppdev as parallel
 	except ImportError:
 		print("The local modified version of pyparallel could not be loaded. Check if the file is present and if the file permissions are correct.")
-if os.name == 'nt' :
+elif os.name == 'nt' :
 	try:
 		from ctypes import windll
 	except ImportError:
