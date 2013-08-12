@@ -13,9 +13,9 @@ Contributions: Code is based on the work of Per Sederberg. Debugged and polished
 In EEG/ ERP studies it is common to send triggers to mark the time of significant events (e.g., the onset of a trial, presentation of a particular stimulus, etc.). Triggers are typically bytes that are sent via the parallel port to the EEG apparatus. This can be done with the parallel port trigger plugin which works in Linux and Windows. For Windows the `DLPortIO.dll` driver is used to access the parallel port.
 
 The plugin has three input boxes:
-- Value ranges between 0-255.
+- Value ranges between 0-255
 - Duration in ms
-- Parallel port adress has to be specified manually (Windows only). 
+- Parallel port adress has to be specified manually (Windows only)
 
 
 Installation instructions: <http://osdoc.cogsci.nl/devices/triggers/>
