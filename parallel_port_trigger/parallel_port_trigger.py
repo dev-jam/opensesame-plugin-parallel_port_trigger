@@ -99,7 +99,7 @@ class parallel_port_trigger(item.item):
 			if "_winpp" in globals():
 				global _winpp
 				if self.experiment.debug:
-					print "parallel_port_trigger.clean_up_this_mess(): deleting _pp"
+					print "parallel_port_trigger.clean_up_this_mess(): deleting _winpp"
 				if not _winpp is None:
 					del _winpp
 		else:
@@ -143,7 +143,7 @@ class parallel_port_trigger(item.item):
 
 		
 		# create keyboard object
-		self.kb = keyboard(self.experiment,timeout=1)
+		self.kb = keyboard(self.experiment, keylist=['escape'])
 		
 		
 		# Report success
@@ -167,15 +167,8 @@ class parallel_port_trigger(item.item):
 				self.set_item_onset(self.pp.setData(self.get("value")))
 
 
-		t0 = self.time()
-		t1 = t0
-
-
-		while self.duration == None or t1 - t0 <= self.duration:
-			t1 = self.time()
-			key,presstime = self.kb.get_key()
-			if key:
-				break
+		# use keyboard as timeout, allowing for Escape presses to abort experiment
+		self.kb.get_key(timeout=self.duration)
 
 		# unless duration was zero, turn it off
 		if os.name == 'nt':
@@ -236,7 +229,7 @@ class qtparallel_port_trigger(parallel_port_trigger, qtplugin.qtplugin):
 		# qtplugin.add_spinbox_control(varname, label, min, max, suffix = suffix, prefix = prefix)
 		
 		self.add_line_edit_control("value", "Value", tooltip = "Value to set port")
-		self.add_line_edit_control("duration", "Duration", tooltip = "Expecting a value in milliseconds, 'keypress' or 'mouseclick'")
+		self.add_line_edit_control("duration", "Duration", tooltip = "Expecting a value in milliseconds")
 		self.add_line_edit_control("port", "Port Adress (Windows only)", tooltip = "Adress of the parallel port in Windows")
 
 		
