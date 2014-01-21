@@ -26,10 +26,8 @@ from libqtopensesame import qtplugin
 from openexp.keyboard import keyboard
 from PyQt4 import QtGui, QtCore
 
-
 import warnings
 import os
-
 import imp
 
 
@@ -144,7 +142,6 @@ class parallel_port_trigger(item.item):
 		
 		# create keyboard object
 		self.kb = keyboard(self.experiment, keylist=['escape'])
-		
 		
 		# Report success
 		return True
