@@ -127,9 +127,9 @@ class parallel_port_trigger(item.item):
 			if _winpp is None:
 				try:
 					_winpp = windll.dlportio
-					print('Successfully accessed the parallel port on address: %s' % self.port)
+					print('Successfully accessed the parallel port on address: %s' % self.get("port"))
 				except OSError:
-					print('Could not access the parallel port on address: %s' % self.port)
+					print('Could not access the parallel port on address: %s' % self.get("port"))
 			self.winpp = _winpp
 		else:
 			global _pp
@@ -161,22 +161,24 @@ class parallel_port_trigger(item.item):
 		if os.name == 'nt':
 			if not self.winpp is None:
 				self.set_item_onset(self.winpp.DlPortWritePortUchar(int(self.get("port"),0), self.get("value")))
-				print(self.get("value"))
+				print('Sending value %s for %s ms to the parallel port on address: %s' % (self.get("value"),self.get("duration"),self.get("port")))
+
 		else:
 			if not self.pp is None:
 				self.set_item_onset(self.pp.setData(self.get("value")))
+				print('Sending value %s for %s ms to the parallel port on address: %s' % (self.get("value"),self.get("duration"),self.get("port")))
 
 
 		# use keyboard as timeout, allowing for Escape presses to abort experiment
-		self.kb.get_key(timeout=self.duration)
+		self.kb.get_key(timeout=self.get("duration"))
 
 		# unless duration was zero, turn it off
 		if os.name == 'nt':
-			if not self.winpp is None and self.duration !=0:
+			if not self.winpp is None and self.get("duration") !=0:
 				self.winpp.DlPortWritePortUchar(int(self.get("port"),0), 0)
-		
+				
 		else:
-			if not self.pp is None and self.duration !=0:
+			if not self.pp is None and self.get("duration") !=0:
 				self.pp.setData(0)
 				
 		# Report success
