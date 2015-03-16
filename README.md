@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 # opensesame_plugin_experiment_manager
 Experiment manager for Opensesame
 =======
@@ -34,4 +33,3 @@ refer to `debian/copyright`.
 Installation instructions and documentation on OpenSesame are available on the documentation website:
 
 - <http://osdoc.cogsci.nl/>
->>>>>>> 5e49c2606edd25fd1dea3b886588e30c5bcf28cd
