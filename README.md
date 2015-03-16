@@ -1,6 +1,3 @@
-# opensesame_plugin_experiment_manager
-Experiment manager for Opensesame
-=======
 OpenSesame Plugin: Experiment Manager
 ==========
 
