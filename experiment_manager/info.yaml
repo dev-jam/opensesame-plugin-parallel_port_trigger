@@ -1,0 +1,17 @@
+description: Experiment Manager plug-in.
+version: 1.0
+author: "Bob Rosbag"
+url: "http://osdoc.cogsci.nl/"
+category: "control"
+date: "2015"
+controls:
+-
+    type: "text"
+    label: "IMPORTANT: The experiment should be started in windowed mode!"
+-
+    type: "line_edit"
+    var: "_experiment_file_name"
+    label: "Experiment file name or variable"
+    name: "experiment_file_name"
+    tooltip: "A variable pointing to the file name(s) of the experiment(s) is expected"
+
