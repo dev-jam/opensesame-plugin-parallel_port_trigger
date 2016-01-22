@@ -1,4 +1,4 @@
-OpenSesame Plug-in: Parallel Port Trigger
+OpenSesame Plug-in: Parallel Port Trigger (in Testing)
 ==========
 
 *An OpenSesame Plug-in for sending stimulus synchronization triggers through the parallel port to data acquisition systems.*  
