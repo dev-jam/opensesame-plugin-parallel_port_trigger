@@ -1,25 +1,36 @@
 description: Parallel Port Trigger plug-in.
-version: 2.0
+version: 3.0
 author: "Bob Rosbag"
 url: "http://osdoc.cogsci.nl/"
-category: "Visual stimuli"
-date: "2015"
+category: "control"
+date: "2016"
 controls:
 -
-    type: "line_edit"
-    var: "_value"
     label: "Value"
     name: "value_widget"
     tooltip: "Value to set port"
+    type: "spinbox"
+    min_val: 1
+    max_val: 255
+    var: "pp_value"
 -
-    type: "line_edit"
-    var: "_duration"
     label: "Duration"
     name: "duration_widget"
     tooltip: "Expecting a value in milliseconds"
+    type: "spinbox"
+    min_val: 0
+    max_val: 1000000000
+    var: "pp_duration"
 -
-    type: "line_edit"
-    var: "_port"
-    label: "Port Adress (Windows only)"
+    label: "Port Adress"
     name: "port_widget"
-    tooltip: "Adress of the parallel port in Windows"
+    tooltip: "Adress of the parallel port"
+    type: "line_edit"
+    var: "pp_port"
+-
+    label: "Dummy Mode"
+    name: "dummy_mode"
+    tooltip: "Run in dummy mode"
+    type: "checkbox"
+    var: "pp_dummy"
+
