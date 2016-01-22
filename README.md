@@ -15,7 +15,7 @@ In EEG/ERP studies it is common to send triggers to mark the timestamp for signi
 The plug-in has four options:
 - *Value* is a positive integer between 1-255 and specifies the trigger byte
 - *Duration* (ms) is a positive integer, 'keypress', or 'mouseclick', to wait respectively for a specified interval in milliseconds, until a key has been pressed, or until a mouse button has been clicked. It specifies the time the trigger is active.
-- *Port adress (Windows only)* is the hexadecimal value of the parallel port in Windows. This setting is ignored in Linux.
+- *Port adress * is the hexadecimal value of the parallel port in Windows or the path to the device in Linux.
 - *Dummy mode* for testing experiments
 
 Linux and Windows are supported (possible also OSX, not tested). For Windows the `DLPortIO.dll` driver is used to access the parallel port. Install options are listed below.
