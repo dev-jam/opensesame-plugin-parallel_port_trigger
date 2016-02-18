@@ -101,8 +101,8 @@ class parallel_port_trigger(item):
         else:
             print(u'Error with dummy mode, mode is: %s' % self.var.pp_dummy)
 
-		# create keyboard object
-		self.kb = keyboard(self.experiment, keylist=['escape'])
+        # create keyboard object
+        self.kb = keyboard(self.experiment, keylist=['escape'])
 
     def run(self):
 
