@@ -30,7 +30,7 @@ from libopensesame import debug
 from libopensesame.item import item
 from libqtopensesame.items.qtautoplugin import qtautoplugin
 
-#from openexp.keyboard import keyboard
+from openexp.keyboard import keyboard
 
 if os.name == 'posix':
     # import the local modified version of pyparallel
@@ -100,6 +100,9 @@ class parallel_port_trigger(item):
             print(u'Dummy mode enabled, prepare phase')
         else:
             print(u'Error with dummy mode, mode is: %s' % self.var.pp_dummy)
+
+		# create keyboard object
+		self.kb = keyboard(self.experiment, keylist=['escape'])
 
     def run(self):
 
