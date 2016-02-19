@@ -9,18 +9,8 @@ controls:
     label: "Value"
     name: "value_widget"
     tooltip: "Value to set port"
-    type: "spinbox"
-    min_val: 1
-    max_val: 255
+    type: "line_edit"
     var: "pp_value"
--
-    label: "Duration"
-    name: "duration_widget"
-    tooltip: "Expecting a value in milliseconds"
-    type: "spinbox"
-    min_val: 0
-    max_val: 1000000000
-    var: "pp_duration"
 -
     label: "Port Adress"
     name: "port_widget"

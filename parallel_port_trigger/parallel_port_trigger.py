@@ -30,8 +30,6 @@ from libopensesame import debug
 from libopensesame.item import item
 from libqtopensesame.items.qtautoplugin import qtautoplugin
 
-from openexp.keyboard import keyboard
-
 if os.name == 'posix':
     # import the local modified version of pyparallel
     # that allows for non-exclusive connections to the parport
@@ -61,7 +59,7 @@ class parallel_port_trigger(item):
     """
 
     # Provide an informative description for your plug-in.
-    description = u'Experiment Manager Plugin'
+    description = u'Parallel Port Trigger Plug-in'
 
     def reset(self):
 
@@ -69,8 +67,8 @@ class parallel_port_trigger(item):
 
         # Set default experimental variables and values
         self.var.pp_value = 0
-        self.var.pp_duration = 500
         self.var.pp_dummy = u'no'
+
         if os.name == 'nt':
             self.var.pp_port = u'0x378'
         else:
@@ -80,7 +78,6 @@ class parallel_port_trigger(item):
         # --debug argument.
         debug.msg(u'Parallel Port Trigger plug-in has been initialized!')
 
-
     def prepare(self):
 
         """Preparation phase"""
@@ -88,21 +85,23 @@ class parallel_port_trigger(item):
         # Call the parent constructor.
         item.prepare(self)
 
-        if self.var.pp_dummy == u'no':
-            try:
-                if os.name == 'nt':
-                    self.pp = windll.dlportio
-                else:
-                    self.pp = parallel.Parallel()
-            except OSError:
-                print(u'Could not access the parallel port on address: %s' % self.var.pp_port)
-        elif self.var.pp_dummy == u'yes':
-            print(u'Dummy mode enabled, prepare phase')
-        else:
-            print(u'Error with dummy mode, mode is: %s' % self.var.pp_dummy)
+        if self.pp_dummy == u'no':
+            if not hasattr(self.experiment, "pp"):
+                try:
+                    if os.name == 'nt':
+                        self.experiment.pp = windll.dlportio
+                    else:
+                        self.experiment.pp = parallel.Parallel()
 
-        # create keyboard object
-        self.kb = keyboard(self.experiment, keylist=['escape'])
+                    self.experiment.cleanup_functions.append(self.close)
+                    self.python_workspace[u'pp'] = self.experiment.pp
+                except:
+                    raise osexception(
+                        _(u'Could not access the Parallel Port'))
+        elif self.var.pp_dummy == u'yes':
+            debug.msg(u'Dummy mode enabled, prepare phase')
+        else:
+            debug.msg(u'Error with dummy mode, mode is: %s' % self.var.pp_dummy)
 
     def run(self):
 
@@ -113,32 +112,35 @@ class parallel_port_trigger(item):
 
         # Set the pp value
 
-        if self.var.pp_dummy == u'no' and self.var.pp_duration != 0:
+        if self.var.pp_dummy == u'no':
             ## turn trigger on
             if os.name == 'nt':
-                self.set_item_onset(self.pp.DlPortWritePortUchar(int(self.var.pp_port,0), self.var.pp_value))
+                self.set_item_onset(self.experiment.pp.DlPortWritePortUchar(int(self.var.pp_port,0), self.var.pp_value))
             else:
-                self.set_item_onset(self.pp.setData(self.var.pp_value))
-            print(u'Sending value %s for %s ms to the parallel port on address: %s' % (self.var.pp_value,self.var.pp_duration,self.var.pp_port))
-
-            # use keyboard as timeout, allowing for Escape presses to abort experiment
-            self.kb.get_key(timeout=self.var.pp_duration)
-
-            # turn trigger off
-            if os.name == 'nt':
-                self.pp.DlPortWritePortUchar(int(self.var.pp_port,0), 0)
-            else:
-                self.pp.setData(0)
-        elif self.var.pp_dummy == u'no' and self.var.pp_duration == 0:
-            print(u'Duration is set to 0, so not doing anything')
-        elif self.var.pp_dummy == u'yes' and self.var.pp_duration != 0:
-            print(u'Dummy mode enabled, NOT sending value %s for %s ms to the parallel port on address: %s' % (self.var.pp_value,self.var.pp_duration,self.var.pp_port))
-        elif self.var.pp_dummy == u'yes' and self.var.pp_duration == 0:
-            print(u'Dummy mode enabled, duration is set to 0, so not doing anything')
+                self.set_item_onset(self.experiment.pp.setData(self.pp_value))
+            debug.msg(u'Sending value %s to the parallel port on address: %s' % (self.var.pp_value,self.var.pp_port))
+        elif self.var.pp_dummy == u'yes':
+            debug.msg(u'Dummy mode enabled, NOT sending value %s to the parallel port on address: %s' % (self.var.pp_value,self.var.pp_port))
         else:
-           print(u'Error with dummy mode or duration')
-        # Report success
-        return True
+            debug.msg(u'Error with dummy mode!')
+
+    def close(self):
+
+        """
+        desc:
+            Neatly close the connection to the buttonbox.
+        """
+
+        if not hasattr(self.experiment, "bb") or \
+            self.experiment.bb is None:
+                debug.msg("no active Buttonbox")
+                return
+        try:
+            self.experiment.bb.close()
+            self.experiment.bb = None
+            debug.msg("buttonbox closed")
+        except:
+            debug.msg("failed to close buttonbox")
 
 
 class qtparallel_port_trigger(parallel_port_trigger, qtautoplugin):
