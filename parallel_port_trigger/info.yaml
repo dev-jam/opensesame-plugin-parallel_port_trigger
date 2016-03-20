@@ -10,17 +10,17 @@ controls:
     name: "value_widget"
     tooltip: "Value to set port"
     type: "line_edit"
-    var: "pp_value"
+    var: "pptrigger_value"
 -
     label: "Port Adress"
     name: "port_widget"
     tooltip: "Adress of the parallel port"
     type: "line_edit"
-    var: "pp_port"
+    var: "pptrigger_port"
 -
     label: "Dummy Mode"
     name: "dummy_mode"
     tooltip: "Run in dummy mode"
     type: "checkbox"
-    var: "pp_dummy"
+    var: "ppport_dummy"
 

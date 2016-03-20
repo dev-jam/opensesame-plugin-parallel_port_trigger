@@ -3,7 +3,7 @@
 """
 21-01-2016
 Author: Bob Rosbag
-Version: 1.0
+Version: 3.0
 
 This file is part of OpenSesame.
 
@@ -66,13 +66,13 @@ class parallel_port_trigger(item):
         """Resets plug-in to initial values."""
 
         # Set default experimental variables and values
-        self.var.pp_value = 0
-        self.var.pp_dummy = u'no'
+        self.var.pptrigger_value = 0
+        self.var.pptrigger_dummy = u'no'
 
         if os.name == 'nt':
-            self.var.pp_port = u'0x378'
+            self.var.pptrigger_port = u'0x378'
         else:
-            self.var.pp_port = u'/dev/parport0'
+            self.var.pptrigger_port = u'/dev/parport0'
 
         # Debugging output is only visible when OpenSesame is started with the
         # --debug argument.
@@ -85,23 +85,27 @@ class parallel_port_trigger(item):
         # Call the parent constructor.
         item.prepare(self)
 
-        if self.pp_dummy == u'no':
-            if not hasattr(self.experiment, "pp"):
+        self.pptrigger_value = self.var.pptrigger_value
+        self.pptrigger_dummy = self.var.pptrigger_dummy
+        self.pptrigger_port = self.var.pptrigger_port
+
+        if self.pptrigger_dummy == u'no':
+            if not hasattr(self.experiment, "pptrigger"):
                 try:
                     if os.name == 'nt':
-                        self.experiment.pp = windll.dlportio
+                        self.experiment.pptrigger = windll.dlportio
                     else:
-                        self.experiment.pp = parallel.Parallel()
+                        self.experiment.pptrigger = parallel.Parallel()
 
                     self.experiment.cleanup_functions.append(self.close)
-                    self.python_workspace[u'pp'] = self.experiment.pp
+                    self.python_workspace[u'pptrigger'] = self.experiment.pptrigger
                 except:
                     raise osexception(
                         _(u'Could not access the Parallel Port'))
-        elif self.var.pp_dummy == u'yes':
+        elif self.pptrigger_dummy == u'yes':
             debug.msg(u'Dummy mode enabled, prepare phase')
         else:
-            debug.msg(u'Error with dummy mode, mode is: %s' % self.var.pp_dummy)
+            debug.msg(u'Error with dummy mode, mode is: %s' % self.pptrigger_dummy)
 
     def run(self):
 
@@ -110,17 +114,17 @@ class parallel_port_trigger(item):
         # self.set_item_onset() sets the time_[item name] variable. Optionally,
         # you can pass a timestamp, such as returned by canvas.show().
 
-        # Set the pp value
+        # Set the pptrigger value
 
-        if self.var.pp_dummy == u'no':
+        if self.pptrigger_dummy == u'no':
             ## turn trigger on
             if os.name == 'nt':
-                self.set_item_onset(self.experiment.pp.DlPortWritePortUchar(int(self.var.pp_port,0), self.var.pp_value))
+                self.set_item_onset(self.experiment.pptrigger.DlPortWritePortUchar(int(self.pptrigger_port,0), self.pptrigger_value))
             else:
-                self.set_item_onset(self.experiment.pp.setData(self.pp_value))
-            debug.msg(u'Sending value %s to the parallel port on address: %s' % (self.var.pp_value,self.var.pp_port))
-        elif self.var.pp_dummy == u'yes':
-            debug.msg(u'Dummy mode enabled, NOT sending value %s to the parallel port on address: %s' % (self.var.pp_value,self.var.pp_port))
+                self.set_item_onset(self.experiment.pptrigger.setData(self.pptrigger_value))
+            debug.msg(u'Sending value %s to the parallel port on address: %s' % (self.pptrigger_value,self.pptrigger_port))
+        elif self.pptrigger_dummy == u'yes':
+            debug.msg(u'Dummy mode enabled, NOT sending value %s to the parallel port on address: %s' % (self.pptrigger_value,self.pptrigger_port))
         else:
             debug.msg(u'Error with dummy mode!')
 
@@ -131,16 +135,16 @@ class parallel_port_trigger(item):
             Neatly close the connection to the buttonbox.
         """
 
-        if not hasattr(self.experiment, "bb") or \
-            self.experiment.bb is None:
-                debug.msg("no active Buttonbox")
+        if not hasattr(self.experiment, "pptrigger") or \
+            self.experiment.pptrigger is None:
+                debug.msg("no active Parallel port")
                 return
         try:
-            self.experiment.bb.close()
-            self.experiment.bb = None
-            debug.msg("buttonbox closed")
+            self.experiment.pptrigger.close()
+            self.experiment.pptrigger = None
+            debug.msg("Parallel Port closed")
         except:
-            debug.msg("failed to close buttonbox")
+            debug.msg("failed to close Parallel port")
 
 
 class qtparallel_port_trigger(parallel_port_trigger, qtautoplugin):
