@@ -31,26 +31,6 @@ from libopensesame.item import item
 from libqtopensesame.items.qtautoplugin import qtautoplugin
 from libopensesame.exceptions import osexception
 
-if os.name == 'posix':
-    # import the local modified version of pyparallel
-    # that allows for non-exclusive connections to the parport
-    path_to_file = os.path.join(os.path.dirname(__file__), 'parallelppdev.py')
-    parallel = imp.load_source('parallel', path_to_file)
-    try:
-        import parallelppdev as parallel
-    except ImportError as e:
-        raise osexception(u'The local modified version of pyparallel could not be loaded. Check if the file is present and if the file permissions are correct.', exception=e)
-elif os.name == 'nt':
-    try:
-        from ctypes import windll
-    except ImportError as e:
-        raise osexception(u'The ctypes module can not be loaded. Check if ctypes is installed correctly.', exception=e)
-else:
-    try:
-        import parallel
-    except ImportError as e:
-        raise osexception('The pyparallel module could not be loaded, please make sure pyparallel is installed correctly.', exception=e)
-
 class parallel_port_trigger(item):
 
     """
@@ -86,10 +66,35 @@ class parallel_port_trigger(item):
         item.prepare(self)
 
         self.pptrigger_value = self.var.pptrigger_value
-        self.pptrigger_dummy = self.var.pptrigger_dummy
         self.pptrigger_port = self.var.pptrigger_port
+        
 
+        if hasattr(self.experiment, "pptrigger_dummy"):
+            self.pptrigger_dummy = self.experiment.pptrigger_dummy
+        else:
+            self.pptrigger_dummy = self.var.pptrigger_dummy
+            self.experiment.pptrigger_dummy = self.var.pptrigger_dummy
         if self.pptrigger_dummy == u'no':
+            if os.name == 'posix':
+                # import the local modified version of pyparallel
+                # that allows for non-exclusive connections to the parport
+                path_to_file = os.path.join(os.path.dirname(__file__), 'parallelppdev.py')
+                parallel = imp.load_source('parallel', path_to_file)
+                try:
+                    import parallelppdev as parallel
+                except ImportError as e:
+                    raise osexception(u'The local modified version of pyparallel could not be loaded. Check if the file is present and if the file permissions are correct.', exception=e)
+            elif os.name == 'nt':
+                try:
+                    from ctypes import windll
+                except ImportError as e:
+                    raise osexception(u'The ctypes module can not be loaded. Check if ctypes is installed correctly.', exception=e)
+            else:
+                try:
+                    import parallel
+                except ImportError as e:
+                    raise osexception('The pyparallel module could not be loaded, please make sure pyparallel is installed correctly.', exception=e)
+
             if not hasattr(self.experiment, "pptrigger"):
                 try:
                     if os.name == 'nt':
