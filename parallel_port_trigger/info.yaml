@@ -22,5 +22,5 @@ controls:
     name: "dummy_mode"
     tooltip: "Run in dummy mode"
     type: "checkbox"
-    var: "ppport_dummy"
+    var: "pptrigger_dummy"
 
