@@ -29,6 +29,7 @@ from libopensesame.py3compat import *
 from libopensesame import debug
 from libopensesame.item import item
 from libqtopensesame.items.qtautoplugin import qtautoplugin
+from libopensesame.exceptions import osexception
 
 if os.name == 'posix':
     # import the local modified version of pyparallel
@@ -37,19 +38,18 @@ if os.name == 'posix':
     parallel = imp.load_source('parallel', path_to_file)
     try:
         import parallelppdev as parallel
-    except ImportError:
-        print(u'The local modified version of pyparallel could not be loaded. Check if the file is present and if the file permissions are correct.')
+    except ImportError as e:
+        raise osexception(u'The local modified version of pyparallel could not be loaded. Check if the file is present and if the file permissions are correct.', exception=e)
 elif os.name == 'nt':
     try:
         from ctypes import windll
-    except ImportError:
-        print(u'The ctypes module can not be loaded. Check if ctypes is installed correctly.')
+    except ImportError as e:
+        raise osexception(u'The ctypes module can not be loaded. Check if ctypes is installed correctly.', exception=e)
 else:
     try:
         import parallel
-    except ImportError:
-        print('The pyparallel module could not be loaded, please make sure pyparallel is installed correctly.')
-
+    except ImportError as e:
+        raise osexception('The pyparallel module could not be loaded, please make sure pyparallel is installed correctly.', exception=e)
 
 class parallel_port_trigger(item):
 
@@ -96,12 +96,12 @@ class parallel_port_trigger(item):
                         self.experiment.pptrigger = windll.dlportio
                     else:
                         self.experiment.pptrigger = parallel.Parallel()
-
-                    self.experiment.cleanup_functions.append(self.close)
-                    self.python_workspace[u'pptrigger'] = self.experiment.pptrigger
-                except:
+                    pass
+                except Exception as e:
                     raise osexception(
-                        _(u'Could not access the Parallel Port'))
+                        u'Could not access the Parallel Port', exception=e)
+                self.experiment.cleanup_functions.append(self.close)
+                self.python_workspace[u'pptrigger'] = self.experiment.pptrigger
         elif self.pptrigger_dummy == u'yes':
             debug.msg(u'Dummy mode enabled, prepare phase')
         else:
@@ -115,7 +115,6 @@ class parallel_port_trigger(item):
         # you can pass a timestamp, such as returned by canvas.show().
 
         # Set the pptrigger value
-
         if self.pptrigger_dummy == u'no':
             ## turn trigger on
             if os.name == 'nt':
