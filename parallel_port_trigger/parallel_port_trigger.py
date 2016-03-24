@@ -67,7 +67,7 @@ class parallel_port_trigger(item):
 
         self.pptrigger_value = self.var.pptrigger_value
         self.pptrigger_port = self.var.pptrigger_port
-        
+
 
         if hasattr(self.experiment, "pptrigger_dummy"):
             self.pptrigger_dummy = self.experiment.pptrigger_dummy
