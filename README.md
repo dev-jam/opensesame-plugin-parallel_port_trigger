@@ -14,7 +14,6 @@ In EEG/ERP studies it is common to send triggers to mark the timestamp for signi
 
 The plug-in has four options:
 - *Value* is a positive integer between 1-255 and specifies the trigger byte
-- *Duration* (ms) is a positive integer, 'keypress', or 'mouseclick', to wait respectively for a specified interval in milliseconds, until a key has been pressed, or until a mouse button has been clicked. It specifies the time the trigger is active.
 - *Port adress* is the hexadecimal value of the parallel port in Windows or the path to the device in Linux.
 - *Dummy mode* for testing experiments
 
