@@ -31,6 +31,8 @@ from libopensesame.item import item
 from libqtopensesame.items.qtautoplugin import qtautoplugin
 from libopensesame.exceptions import osexception
 
+VERSION = u'4.0'
+
 class parallel_port_trigger(item):
 
     """
@@ -47,16 +49,9 @@ class parallel_port_trigger(item):
 
         # Set default experimental variables and values
         self.var.pptrigger_value = 0
-        self.var.pptrigger_dummy = u'no'
+        self.var.pptrigger_duration_check = u'no'
+        self.var.pptrigger_duration = 0
 
-        if os.name == 'nt':
-            self.var.pptrigger_port = u'0x378'
-        else:
-            self.var.pptrigger_port = u'/dev/parport0'
-
-        # Debugging output is only visible when OpenSesame is started with the
-        # --debug argument.
-        debug.msg(u'Parallel Port Trigger plug-in has been initialized!')
 
     def prepare(self):
 
@@ -66,51 +61,15 @@ class parallel_port_trigger(item):
         item.prepare(self)
 
         self.pptrigger_value = self.var.pptrigger_value
-        self.pptrigger_port = self.var.pptrigger_port
+        self.pptrigger_duration_check = self.var.pptrigger_duration_check
+        self.pptrigger_duration = self.var.pptrigger_duration
 
 
         if hasattr(self.experiment, "pptrigger_dummy"):
             self.pptrigger_dummy = self.experiment.pptrigger_dummy
         else:
-            self.pptrigger_dummy = self.var.pptrigger_dummy
-            self.experiment.pptrigger_dummy = self.var.pptrigger_dummy
-        if self.pptrigger_dummy == u'no':
-            if os.name == 'posix':
-                # import the local modified version of pyparallel
-                # that allows for non-exclusive connections to the parport
-                path_to_file = os.path.join(os.path.dirname(__file__), 'parallelppdev.py')
-                parallel = imp.load_source('parallel', path_to_file)
-                try:
-                    import parallelppdev as parallel
-                except ImportError as e:
-                    raise osexception(u'The local modified version of pyparallel could not be loaded. Check if the file is present and if the file permissions are correct.', exception=e)
-            elif os.name == 'nt':
-                try:
-                    from ctypes import windll
-                except ImportError as e:
-                    raise osexception(u'The ctypes module can not be loaded. Check if ctypes is installed correctly.', exception=e)
-            else:
-                try:
-                    import parallel
-                except ImportError as e:
-                    raise osexception('The pyparallel module could not be loaded, please make sure pyparallel is installed correctly.', exception=e)
-
-            if not hasattr(self.experiment, "pptrigger"):
-                try:
-                    if os.name == 'nt':
-                        self.experiment.pptrigger = windll.dlportio
-                    else:
-                        self.experiment.pptrigger = parallel.Parallel()
-                    pass
-                except Exception as e:
-                    raise osexception(
-                        u'Could not access the Parallel Port', exception=e)
-                self.experiment.cleanup_functions.append(self.close)
-                self.python_workspace[u'pptrigger'] = self.experiment.pptrigger
-        elif self.pptrigger_dummy == u'yes':
-            debug.msg(u'Dummy mode enabled, prepare phase')
-        else:
-            debug.msg(u'Error with dummy mode, mode is: %s' % self.pptrigger_dummy)
+            raise osexception(
+                    u'Parallel Port init is missing')
 
     def run(self):
 
@@ -122,33 +81,42 @@ class parallel_port_trigger(item):
         # Set the pptrigger value
         if self.pptrigger_dummy == u'no':
             ## turn trigger on
-            if os.name == 'nt':
-                self.set_item_onset(self.experiment.pptrigger.DlPortWritePortUchar(int(self.pptrigger_port,0), self.pptrigger_value))
-            else:
-                self.set_item_onset(self.experiment.pptrigger.setData(self.pptrigger_value))
-            debug.msg(u'Sending value %s to the parallel port on address: %s' % (self.pptrigger_value,self.pptrigger_port))
+            try:
+                if os.name == 'nt':
+                    self.set_item_onset(self.experiment.pptrigger.DlPortWritePortUchar(int(self.pptrigger_port,0), self.pptrigger_value))
+                else:
+                    self.set_item_onset(self.experiment.pptrigger.setData(self.pptrigger_value))
+                debug.msg(u'Sending value %s to the parallel port on address: %s' % (self.pptrigger_value,self.pptrigger_port))
+
+            except Exception as e:
+                raise osexception(
+                    u'Wrong port address, could not access the Parallel Port', exception=e)
+            
+            ## Executing duration and reset
+            if self.pptrigger_duration_check == u'yes':
+                # use keyboard as timeout, allowing for Escape presses to abort experiment
+
+                if self.pptrigger_duration !=0:
+
+                    self.kb.get_key(timeout=self.pptrigger_duration)
+                    debug.msg(u'Waiting %s ms to reset' % (self.pptrigger_duration))
+                
+                try: 
+                    if os.name == 'nt':
+                        self.set_item_onset(self.experiment.pptrigger.DlPortWritePortUchar(int(self.pptrigger_port,0), 0))
+                    else:
+                        self.set_item_onset(self.experiment.pptrigger.setData(0))
+                    debug.msg(u'Resetting the parallel port to zero')
+
+                except Exception as e:
+                    raise osexception(
+                        u'Wrong port address, could not access the Parallel Port', exception=e)
+                    
+                    
         elif self.pptrigger_dummy == u'yes':
-            debug.msg(u'Dummy mode enabled, NOT sending value %s to the parallel port on address: %s' % (self.pptrigger_value,self.pptrigger_port))
+            debug.msg(u'Dummy mode enabled, NOT sending value %s to the parallel port on address: %s' % (self.pptrigger_value,self.experiment.pptrigger_port))
         else:
             debug.msg(u'Error with dummy mode!')
-
-    def close(self):
-
-        """
-        desc:
-            Neatly close the connection to the buttonbox.
-        """
-
-        if not hasattr(self.experiment, "pptrigger") or \
-            self.experiment.pptrigger is None:
-                debug.msg("no active Parallel port")
-                return
-        try:
-            self.experiment.pptrigger.close()
-            self.experiment.pptrigger = None
-            debug.msg("Parallel Port closed")
-        except:
-            debug.msg("failed to close Parallel port")
 
 
 class qtparallel_port_trigger(parallel_port_trigger, qtautoplugin):
@@ -159,3 +127,45 @@ class qtparallel_port_trigger(parallel_port_trigger, qtautoplugin):
 
         parallel_port_trigger.__init__(self, name, experiment, script)
         qtautoplugin.__init__(self, __file__)
+        self.text_pptrigger_version.setText(
+        u'<small>Parallel Port Trigger version %s</small>' % VERSION)
+
+    def apply_edit_changes(self):
+
+        """
+        desc:
+            Applies the controls.
+        """
+
+        if not qtautoplugin.apply_edit_changes(self) or self.lock:
+            return False
+        self.custom_interactions()
+
+    def edit_widget(self):
+
+        """
+        Refreshes the controls.
+
+        Returns:
+        The QWidget containing the controls
+        """
+
+        if self.lock:
+            return
+        self.lock = True
+        w = qtautoplugin.edit_widget(self)
+        self.custom_interactions()
+        self.lock = False
+        return w
+
+    def custom_interactions(self):
+
+        """
+        desc:
+            Activates the relevant controls for each tracker.
+        """
+        if self.pptrigger_duration_check == u'yes':
+            self.spinbox_pptrigger_duration.setEnabled(True)
+        elif self.pptrigger_duration_check == u'no':
+            self.spinbox_pptrigger_duration.setDisabled(True)
+
