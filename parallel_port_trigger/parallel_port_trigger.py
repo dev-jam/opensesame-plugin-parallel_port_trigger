@@ -61,10 +61,6 @@ class parallel_port_trigger(item):
         # Call the parent constructor.
         item.prepare(self)
 
-        self.pptrigger_value = self.var.pptrigger_value
-        self.pptrigger_duration_check = self.var.pptrigger_duration_check
-        self.pptrigger_duration = self.var.pptrigger_duration
-
 		# create keyboard object
         self.kb = keyboard(self.experiment,timeout=1)
 
@@ -83,6 +79,9 @@ class parallel_port_trigger(item):
 
         # Set the pptrigger value dynamically in run phase
         self.pptrigger_value = self.var.pptrigger_value
+        self.pptrigger_duration_check = self.var.pptrigger_duration_check
+        self.pptrigger_duration = self.var.pptrigger_duration        
+        
         
         if self.pptrigger_dummy == u'no':
             ## turn trigger on
