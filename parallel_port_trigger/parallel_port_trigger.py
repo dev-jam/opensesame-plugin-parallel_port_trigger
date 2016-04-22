@@ -81,7 +81,9 @@ class parallel_port_trigger(item):
         # self.set_item_onset() sets the time_[item name] variable. Optionally,
         # you can pass a timestamp, such as returned by canvas.show().
 
-        # Set the pptrigger value
+        # Set the pptrigger value dynamically in run phase
+        self.pptrigger_value = self.var.pptrigger_value
+        
         if self.pptrigger_dummy == u'no':
             ## turn trigger on
             try:
