@@ -98,7 +98,15 @@ class parallel_port_trigger_init(item):
                     if os.name == 'nt':
                         self.experiment.pptrigger = windll.dlportio
                     else:
-                        self.experiment.pptrigger = parallel.Parallel(port=self.pptrigger_port.encode('ascii'), exclusive=True)
+                        #print(self.pptrigger_port.encode('ascii'))
+                        if isinstance(self.pptrigger_port,str):
+                            pptrigger_port = self.pptrigger_port.encode('ascii')
+                        elif isinstance(self.pptrigger_port,int):
+                            pptrigger_port = self.pptrigger_port
+                        else:
+                            raise osexception('Port value is not an integer or string')
+                        self.experiment.pptrigger = parallel.Parallel(port=pptrigger_port)
+                        #self.experiment.pptrigger = parallel.Parallel()
                     pass
                 except Exception as e:
                     raise osexception(

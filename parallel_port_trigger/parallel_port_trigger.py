@@ -30,6 +30,7 @@ from libopensesame import debug
 from libopensesame.item import item
 from libqtopensesame.items.qtautoplugin import qtautoplugin
 from libopensesame.exceptions import osexception
+from openexp.keyboard import keyboard
 
 VERSION = u'4.0'
 
@@ -64,6 +65,8 @@ class parallel_port_trigger(item):
         self.pptrigger_duration_check = self.var.pptrigger_duration_check
         self.pptrigger_duration = self.var.pptrigger_duration
 
+		# create keyboard object
+        self.kb = keyboard(self.experiment,timeout=1)
 
         if hasattr(self.experiment, "pptrigger_dummy"):
             self.pptrigger_dummy = self.experiment.pptrigger_dummy
@@ -86,7 +89,7 @@ class parallel_port_trigger(item):
                     self.set_item_onset(self.experiment.pptrigger.DlPortWritePortUchar(int(self.pptrigger_port,0), self.pptrigger_value))
                 else:
                     self.set_item_onset(self.experiment.pptrigger.setData(self.pptrigger_value))
-                debug.msg(u'Sending value %s to the parallel port on address: %s' % (self.pptrigger_value,self.pptrigger_port))
+                debug.msg(u'Sending value %s to the parallel port on address: %s' % (self.pptrigger_value,self.experiment.pptrigger_port))
 
             except Exception as e:
                 raise osexception(
