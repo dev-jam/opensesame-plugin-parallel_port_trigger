@@ -3,7 +3,7 @@
 """
 21-01-2016
 Author: Bob Rosbag
-Version: 3.0
+Version: 5.0
 
 This file is part of OpenSesame.
 
@@ -31,7 +31,7 @@ from libopensesame.item import item
 from libqtopensesame.items.qtautoplugin import qtautoplugin
 from libopensesame.exceptions import osexception
 
-VERSION = u'4.0'
+VERSION = u'5.0'
 
 class parallel_port_trigger_init(item):
 
@@ -96,7 +96,9 @@ class parallel_port_trigger_init(item):
             if not hasattr(self.experiment, "pptrigger"):
                 try:
                     if os.name == 'nt':
-                        self.experiment.pptrigger = windll.dlportio
+                        path_to_dll_file = os.path.join(os.path.dirname(__file__), 'inpout32.dll')
+                        print(path_to_dll_file)
+                        self.experiment.pptrigger = windll.LoadLibrary(path_to_dll_file)
                     else:
                         #print(self.pptrigger_port.encode('ascii'))
                         if isinstance(self.pptrigger_port,str):

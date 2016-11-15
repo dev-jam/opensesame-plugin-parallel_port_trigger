@@ -3,7 +3,7 @@
 """
 21-01-2016
 Author: Bob Rosbag
-Version: 3.0
+Version: 5.0
 
 This file is part of OpenSesame.
 
@@ -32,7 +32,7 @@ from libqtopensesame.items.qtautoplugin import qtautoplugin
 from libopensesame.exceptions import osexception
 from openexp.keyboard import keyboard
 
-VERSION = u'4.0'
+VERSION = u'5.0'
 
 class parallel_port_trigger(item):
 
@@ -80,7 +80,8 @@ class parallel_port_trigger(item):
         # Set the pptrigger value dynamically in run phase
         self.pptrigger_value = self.var.pptrigger_value
         self.pptrigger_duration_check = self.var.pptrigger_duration_check
-        self.pptrigger_duration = self.var.pptrigger_duration        
+        self.pptrigger_duration = self.var.pptrigger_duration    
+        self.pptrigger_port = self.var.pptrigger_port    
         
         
         if self.pptrigger_dummy == u'no':
