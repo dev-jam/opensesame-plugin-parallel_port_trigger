@@ -1,11 +1,11 @@
-OpenSesame Plug-in: Parallel Port Trigger (in Testing)
+OpenSesame Plug-in: Parallel Port Trigger
 ==========
 
 *An OpenSesame Plug-in for sending stimulus synchronization triggers through the parallel port to data acquisition systems.*  
 
 Copyright, 2016, Bob Rosbag  
 
-Contributions and thanks: Code is based on the work of Per Sederberg. Debugged and polished by Edwin Dalmaijer.
+Contributions: Code is based on the work of Per Sederberg. Debugged and polished by Edwin Dalmaijer.
 
 1. About
 --------
@@ -21,10 +21,10 @@ The plug-in has an *init* item which should be placed at the beginning of an exp
 - *Duration* is the duration in ms.
 
 
-Linux and Windows are supported (possible also OSX, not tested). For Windows the `DLPortIO.dll` driver is used to access the parallel port. Install options are listed below.
+Linux and Windows are supported (possible also OSX, not tested). For Windows the `DLPortIO.dll` driver is used to access the parallel port. No need for driver installation.
 
 
-Installation instructions: <http://osdoc.cogsci.nl/devices/triggers/>
+Documentation: <http://osdoc.cogsci.nl/devices/triggers/>
 
 
 2. LICENSE
