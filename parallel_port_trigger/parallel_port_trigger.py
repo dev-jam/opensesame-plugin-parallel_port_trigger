@@ -3,7 +3,7 @@
 """
 31-01-2017
 Author: Bob Rosbag
-Version: 5.0
+Version: 6.0
 
 This file is part of OpenSesame.
 
