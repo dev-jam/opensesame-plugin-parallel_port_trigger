@@ -3,11 +3,7 @@
 """
 31-01-2017
 Author: Bob Rosbag
-<<<<<<< HEAD
 Version: 6.0
-=======
-Version: 5.0
->>>>>>> 9f7131dd090469c1b159ccc7fd89f9b0fcab1f22
 
 This file is part of OpenSesame.
 
@@ -35,7 +31,7 @@ from libopensesame.item import item
 from libqtopensesame.items.qtautoplugin import qtautoplugin
 from libopensesame.exceptions import osexception
 
-VERSION = u'5.0'
+VERSION = u'6.0'
 
 class parallel_port_trigger_init(item):
 
