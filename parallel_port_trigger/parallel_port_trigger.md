@@ -18,10 +18,10 @@ The plug-in has four options:
 - *Port adress (Windows only)* is the hexadecimal value of the parallel port in Windows. This setting is ignored in Linux.
 - *Dummy mode* for testing experiments
 
-Linux and Windows are supported (possible also OSX, not tested). For Windows the `DLPortIO.dll` driver is used to access the parallel port. Install options are listed below.
+Linux and Windows are supported (possible also OSX, not tested). For Windows the `DLPortIO.dll` driver is used to access the parallel port. No need for driver installation.
 
 
-Installation instructions: <http://osdoc.cogsci.nl/devices/triggers/>
+Documentation: <http://osdoc.cogsci.nl/devices/triggers/>
 
 
 2. LICENSE
