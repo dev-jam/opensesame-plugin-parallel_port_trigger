@@ -1,9 +1,9 @@
 #-*- coding:utf-8 -*-
 
 """
-21-01-2016
+31-01-2017
 Author: Bob Rosbag
-Version: 3.0
+Version: 5.0
 
 This file is part of OpenSesame.
 
