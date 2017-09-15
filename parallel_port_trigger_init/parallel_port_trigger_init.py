@@ -122,7 +122,7 @@ class parallel_port_trigger_init(item):
                     self.set_item_onset(self.experiment.pptrigger.DlPortWritePortUchar(int(self.pptrigger_port,0), 0))
                 else:
                     self.set_item_onset(self.experiment.pptrigger.setData(0))
-                debug.msg(u'Resetting the parallel port on address: %s' % (self.pptrigger_value,self.experiment.pptrigger_port))
+                debug.msg(u'Resetting the parallel port on address: %s' % (self.experiment.pptrigger_port))
 
             except Exception as e:
                 raise osexception(
