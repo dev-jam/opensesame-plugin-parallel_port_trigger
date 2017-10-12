@@ -108,9 +108,9 @@ class parallel_port_trigger(item):
                 
                 try: 
                     if os.name == 'nt':
-                        self.set_item_onset(self.experiment.pptrigger.DlPortWritePortUchar(int(self.pptrigger_port,0), 0))
+                        self.experiment.pptrigger.DlPortWritePortUchar(int(self.pptrigger_port,0), 0)
                     else:
-                        self.set_item_onset(self.experiment.pptrigger.setData(0))
+                        self.experiment.pptrigger.setData(0)
                     debug.msg(u'Resetting the parallel port to zero')
 
                 except Exception as e:
