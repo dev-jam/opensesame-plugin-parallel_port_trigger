@@ -12,9 +12,11 @@ Contributions: Code is based on the work of Per Sederberg. Debugged and polished
 
 In EEG/ERP studies it is common to send triggers to mark the timestamp for significant events (e.g., the onset of a trial, presentation of a particular stimulus, etc.). Triggers are typically bytes that are sent via the parallel port to data acquisition systems.
 
-The plug-in has an *init* item which should be placed at the beginning of an experiment and a *trigger* item for initiating triggers:
+The plug-in has an *init* item which should be placed at the beginning of an experiment and a *trigger* item for initiating triggers.
 
+This plug-in has six options:
 - *Dummy mode* for testing experiments.
+- *Verbose mode* for testing experiments.
 - *Port adress* for Windows: hexadecimal or decimal value, for Linux: full path or port number.
 - *Value* is a positive integer between 1-255 and specifies the trigger byte.
 - *Enable duration* option to enable the duration parameter.

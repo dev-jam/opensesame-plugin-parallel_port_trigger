@@ -1,4 +1,4 @@
-description: Parallel Port Trigger plug-in.
+description: Parallel Port Trigger - initializes the parallel port device.
 version: 2017.11-1
 author: "Bob Rosbag"
 url: "http://osdoc.cogsci.nl/"

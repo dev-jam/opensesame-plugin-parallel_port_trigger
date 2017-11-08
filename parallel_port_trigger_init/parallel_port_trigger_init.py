@@ -41,7 +41,7 @@ class parallel_port_trigger_init(item):
     """
 
     # Provide an informative description for your plug-in.
-    description = u'Parallel Port Trigger Plug-in'
+    description = u'Parallel Port Trigger: initializes the parallel port device.'
 
     def __init__(self, name, experiment, string=None):
 
@@ -78,7 +78,7 @@ class parallel_port_trigger_init(item):
 
         self.experiment.pptrigger_dummy_mode = self.var.dummy_mode
         self.experiment.pptrigger_port = self.var.port
-        
+
         self.experiment.var.pptrigger_port = self.var.port
 
 
@@ -88,7 +88,7 @@ class parallel_port_trigger_init(item):
 
         # Call the parent constructor.
         item.prepare(self)
-        
+
         self.close()
         self.init_var()
 

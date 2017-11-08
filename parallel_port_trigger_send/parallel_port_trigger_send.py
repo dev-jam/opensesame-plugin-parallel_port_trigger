@@ -41,7 +41,7 @@ class parallel_port_trigger_send(item):
     """
 
     # Provide an informative description for your plug-in.
-    description = u'Parallel Port Trigger Plug-in'
+    description = u'Parallel Port Trigger: send trigger.'
 
     def __init__(self, name, experiment, string=None):
 
@@ -75,7 +75,7 @@ class parallel_port_trigger_send(item):
         self.pptrigger = self.experiment.pptrigger
 
 
-        
+
 
     def prepare(self):
 
@@ -84,7 +84,7 @@ class parallel_port_trigger_send(item):
         # Call the parent constructor.
         item.prepare(self)
 
-		# create keyboard object
+        # create keyboard object
         self.kb = keyboard(self.experiment,timeout=1)
 
         self.init_var()
