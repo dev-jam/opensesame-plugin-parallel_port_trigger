@@ -35,7 +35,7 @@ The full license should be included in the file COPYING, or can be obtained from
 
 - <http://www.gnu.org/licenses/gpl.txt>
 
-Parallel Port Trigger contains works of others. For the full license information, please
+This Plug-in contains works of others. For the full license information, please
 refer to `debian/copyright`.
 
 

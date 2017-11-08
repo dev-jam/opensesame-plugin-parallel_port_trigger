@@ -1,31 +1,35 @@
 description: Parallel Port Trigger plug-in.
-version: 6.0
+version: 2017.11-1
 author: "Bob Rosbag"
 url: "http://osdoc.cogsci.nl/"
 category: "Parallel Port Trigger"
-date: "2016"
+date: "2017"
 controls:
 -
     label: "Value"
-    name: "line_edit_pptrigger_value"
+    name: "line_edit_value"
     tooltip: "Value to set port"
     type: "line_edit"
-    var: "pptrigger_value"
+    var: "value"
 -
     label: "Enable duration"
-    name: "checkbox_pptrigger_duration_check"
+    name: "checkbox_duration_check"
     tooltip: "Enable duration?"
     type: "checkbox"
-    var: "pptrigger_duration_check"
+    var: "duration_check"
 -
     label: "Duration (ms)"
-    name: "spinbox_pptrigger_duration"
+    name: "spinbox_duration"
     tooltip: "Value in ms"
     type: "spinbox"
     min_val: 0
     max_val: 1000000000
-    var: "pptrigger_duration"
+    var: "duration"
+-
+    label: |
+      <small><b>Note:</b> Parallel Port Trigger Init item at the begin of the experiment is needed for initialisation of the parallel port</small>
+    type: text
 -
     type: text
     label: DUMMY
-    name: text_pptrigger_version
+    name: text_version
