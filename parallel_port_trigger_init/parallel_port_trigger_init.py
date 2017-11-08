@@ -3,7 +3,7 @@
 """
 31-01-2017
 Author: Bob Rosbag
-Version: 6.0
+Version: 2017.11-1
 
 This file is part of OpenSesame.
 
@@ -31,7 +31,7 @@ from libopensesame.item import item
 from libqtopensesame.items.qtautoplugin import qtautoplugin
 from libopensesame.exceptions import osexception
 
-VERSION = u'6.0'
+VERSION = u'2017.11-1'
 
 class parallel_port_trigger_init(item):
 
@@ -43,21 +43,44 @@ class parallel_port_trigger_init(item):
     # Provide an informative description for your plug-in.
     description = u'Parallel Port Trigger Plug-in'
 
+    def __init__(self, name, experiment, string=None):
+
+        item.__init__(self, name, experiment, string)
+        self.verbose = u'no'
+
+
     def reset(self):
 
         """Resets plug-in to initial values."""
 
         # Set default experimental variables and values
-        self.var.pptrigger_dummy = u'no'
+        self.var.dummy_mode = u'no'
+        self.var.verbose = u'no'
 
         if os.name == 'nt':
-            self.var.pptrigger_port = u'0x378'
+            self.var.port = u'0x378'
         else:
-            self.var.pptrigger_port = u'/dev/parport0'
+            self.var.port = u'/dev/parport0'
+
 
         # Debugging output is only visible when OpenSesame is started with the
         # --debug argument.
-        debug.msg(u'Parallel Port Trigger plug-in has been initialized!')
+        self.show_message(u'Parallel Port Trigger plug-in has been initialized!')
+
+
+    def init_var(self):
+
+        """Set en check variables."""
+
+        self.dummy_mode = self.var.dummy_mode
+        self.verbose = self.var.verbose
+        self.experiment.pptrigger_verbose = self.var.verbose
+
+        self.experiment.pptrigger_dummy_mode = self.var.dummy_mode
+        self.experiment.pptrigger_port = self.var.port
+        
+        self.experiment.var.pptrigger_port = self.var.port
+
 
     def prepare(self):
 
@@ -65,14 +88,12 @@ class parallel_port_trigger_init(item):
 
         # Call the parent constructor.
         item.prepare(self)
+        
+        self.close()
+        self.init_var()
 
-        self.pptrigger_port = self.var.pptrigger_port
-        self.pptrigger_dummy = self.var.pptrigger_dummy
-        
-        self.experiment.pptrigger_dummy = self.var.pptrigger_dummy
-        self.experiment.pptrigger_port = self.pptrigger_port
-        
-        if self.pptrigger_dummy == u'no':
+
+        if self.dummy_mode == u'no':
             if os.name == 'posix':
                 # import the local modified version of pyparallel
                 # that allows for non-exclusive connections to the parport
@@ -97,40 +118,49 @@ class parallel_port_trigger_init(item):
                 try:
                     if os.name == 'nt':
                         path_to_dll_file = os.path.join(os.path.dirname(__file__), 'inpout32.dll')
-                        print(path_to_dll_file)
+                        show_message(path_to_dll_file)
                         self.experiment.pptrigger = windll.LoadLibrary(path_to_dll_file)
-                    else:
-                        #print(self.pptrigger_port.encode('ascii'))
-                        if isinstance(self.pptrigger_port,str):
-                            pptrigger_port = self.pptrigger_port.encode('ascii')
-                        elif isinstance(self.pptrigger_port,int):
-                            pptrigger_port = self.pptrigger_port
+
+                        if isinstance(self.var.port,str):
+                            #port = self.port.encode('ascii')
+                            self.port = self.var.port.encode('ascii')
                         else:
-                            raise osexception('Port value is not an integer or string')
-                        self.experiment.pptrigger = parallel.Parallel(port=pptrigger_port)
-                        #self.experiment.pptrigger = parallel.Parallel()
-                    pass
+                            raise osexception('Port value should be a string on Windows')
+
+
+                    else:
+                        show_message(self.var.port)
+                        if isinstance(self.var.port,int):
+                            self.port = self.var.port
+                        elif isinstance(self.var.port,str):
+                            #port = self.port.encode('ascii')
+                            self.port = self.var.port.encode('ascii')
+
+                        else:
+                            raise osexception('Port value should be a integer or string on Linux')
+                        self.experiment.pptrigger = parallel.Parallel(port=self.port)
+
                 except Exception as e:
                     raise osexception(
                         u'Could not access the Parallel Port', exception=e)
                 self.experiment.cleanup_functions.append(self.close)
-                self.python_workspace[u'pptrigger'] = self.experiment.pptrigger
-                
+                self.python_workspace[u'pp'] = self.experiment.pptrigger
+
             ## reset trigger
             try:
                 if os.name == 'nt':
-                    self.set_item_onset(self.experiment.pptrigger.DlPortWritePortUchar(int(self.pptrigger_port,0), 0))
+                    self.set_item_onset(self.experiment.pptrigger.DlPortWritePortUchar(int(self.port,0), 0))
                 else:
                     self.set_item_onset(self.experiment.pptrigger.setData(0))
-                debug.msg(u'Resetting the parallel port on address: %s' % (self.experiment.pptrigger_port))
+                self.show_message(u'Resetting the parallel port on address: %s' % (self.port))
 
             except Exception as e:
                 raise osexception(
                     u'Wrong port address, could not access the Parallel Port', exception=e)
-        elif self.pptrigger_dummy == u'yes':
-            debug.msg(u'Dummy mode enabled, prepare phase')
+        elif self.dummy_mode == u'yes':
+            self.show_message(u'Dummy mode enabled, prepare phase')
         else:
-            debug.msg(u'Error with dummy mode, mode is: %s' % self.pptrigger_dummy)
+            self.show_message(u'Error with dummy mode, mode is: %s' % self.dummy_mode)
 
     def run(self):
 
@@ -138,6 +168,20 @@ class parallel_port_trigger_init(item):
 
         # self.set_item_onset() sets the time_[item name] variable. Optionally,
         # you can pass a timestamp, such as returned by canvas.show().
+
+        pass
+
+
+    def show_message(self, message):
+        """
+        desc:
+            Show message.
+        """
+
+        debug.msg(message)
+        if self.verbose:
+            print(message)
+
 
     def close(self):
 
@@ -148,14 +192,14 @@ class parallel_port_trigger_init(item):
 
         if not hasattr(self.experiment, "pptrigger") or \
             self.experiment.pptrigger is None:
-                debug.msg("no active Parallel port")
+                self.show_message("no active Parallel port")
                 return
         try:
             self.experiment.pptrigger.close()
             self.experiment.pptrigger = None
-            debug.msg("Parallel Port closed")
+            self.show_message("Parallel Port closed")
         except:
-            debug.msg("failed to close Parallel port")
+            self.show_message("failed to close Parallel port")
 
 
 class qtparallel_port_trigger_init(parallel_port_trigger_init, qtautoplugin):
@@ -166,5 +210,5 @@ class qtparallel_port_trigger_init(parallel_port_trigger_init, qtautoplugin):
 
         parallel_port_trigger_init.__init__(self, name, experiment, script)
         qtautoplugin.__init__(self, __file__)
-        self.text_pptrigger_version.setText(
+        self.text_version.setText(
         u'<small>Parallel Port Trigger version %s</small>' % VERSION)

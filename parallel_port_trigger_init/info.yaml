@@ -1,23 +1,33 @@
 description: Parallel Port Trigger plug-in.
-version: 6.0
+version: 2017.11-1
 author: "Bob Rosbag"
 url: "http://osdoc.cogsci.nl/"
 category: "Parallel Port Trigger"
-date: "2016"
+date: "2017"
 controls:
 -
     label: "Dummy Mode"
-    name: "checkbox_pptrigger_dummy"
+    name: "checkbox_dummy"
     tooltip: "Run in dummy mode"
     type: "checkbox"
-    var: "pptrigger_dummy"
+    var: "dummy_mode"
+-
+    label: "Verbose Mode"
+    name: "checkbox_verbose"
+    tooltip: "Show actions in debug window"
+    type: "checkbox"
+    var: "verbose"
 -
     label: "Port Adress"
-    name: "line_edit_pptrigger_port"
+    name: "line_edit_port"
     tooltip: "Adress of the parallel port, value is a hex/dec number (Windows) or path (Linux)"
     type: "line_edit"
-    var: "pptrigger_port"
+    var: "port"
+-
+    label: |
+      <small><b>Note:</b> Parallel Port Trigger Init item at the begin of the experiment is needed for initialisation of the parallel port</small>
+    type: text
 -
     type: text
     label: DUMMY
-    name: text_pptrigger_version
+    name: text_version

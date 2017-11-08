@@ -179,10 +179,13 @@ class Parallel:
     
     """
     def __init__(self, port = 0, exclusive = False):
-        if type(port) == type(""):
+
+        if isinstance(port,str):
             self.device = port
-        else:
+        elif isinstance(port,int):
             self.device = "/dev/parport%d" % port
+        else:
+            raise NotImplementedError
         self._fd = None
         self._fd = os.open(self.device, os.O_RDWR)
         try:
