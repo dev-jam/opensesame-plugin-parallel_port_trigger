@@ -19,11 +19,9 @@ controls:
     var: "duration_check"
 -
     label: "Duration (ms)"
-    name: "spinbox_duration"
+    name: "line_edit_duration"
     tooltip: "Value in ms"
-    type: "spinbox"
-    min_val: 0
-    max_val: 1000000000
+    type: "line_edit"
     var: "duration"
 -
     label: |

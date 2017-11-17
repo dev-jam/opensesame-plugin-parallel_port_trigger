@@ -94,13 +94,16 @@ class parallel_port_trigger_send(item):
 
         """Run phase"""
 
-        # self.set_item_onset() sets the time_[item name] variable. Optionally,
-        # you can pass a timestamp, such as returned by canvas.show().
-
         # Set the pptrigger value dynamically in run phase
         self.value = self.var.value
-        self.duration_check = self.var.duration_check
-        self.duration = self.var.duration
+        self.duration_check  = self.var.duration_check
+
+        if self.duration_check == u'yes' :
+            if isinstance(self.var.duration,int):
+                self.duration = int(self.var.duration)
+            else:
+                raise osexception(u'Duration should be a integer')
+
         self.experiment.var.pptrigger_value = self.var.value
 
         if self.dummy_mode == u'no':
@@ -119,7 +122,7 @@ class parallel_port_trigger_send(item):
             ## Executing duration and reset
             if self.duration_check == u'yes':
                 # use keyboard as timeout, allowing for Escape presses to abort experiment
-                self.experiment.var.pptrigger_duration = self.var.duration
+                self.experiment.var.pptrigger_duration = self.duration
 
                 if self.duration !=0:
 
@@ -201,7 +204,7 @@ class qtparallel_port_trigger_send(parallel_port_trigger_send, qtautoplugin):
             Activates the relevant controls for each tracker.
         """
         if self.var.duration_check == u'yes':
-            self.spinbox_duration.setEnabled(True)
+            self.line_edit_duration.setEnabled(True)
         elif self.var.duration_check == u'no':
-            self.spinbox_duration.setDisabled(True)
+            self.line_edit_duration.setDisabled(True)
 
