@@ -28,7 +28,7 @@ setup(
     version='1.0.0',
     description='An OpenSesame Plug-in for sending stimulus synchronization triggers through the parallel port to data acquisition systems.',
     author='Bob Rosbag',
-    author_email='mail@bobrosbag.nl',
+    author_email='b.rosbag@let.ru.nl',
     url='https://github.com/dev-jam/opensesame_plugin_-_parallel_port_trigger',
     # Classifiers used by PyPi if you upload the plugin there
     classifiers=[
@@ -37,7 +37,7 @@ setup(
         'Environment :: MacOS X',
         'Environment :: Win32 (MS Windows)',
         'Environment :: X11 Applications',
-        'License :: OSI Approved :: GNU General Public License (GPL)',
+        'License :: OSI Approved :: GNU General Public License v3 or later (GPLv3+)',
         'Programming Language :: Python :: 2',
         'Programming Language :: Python :: 3',
     ],
@@ -56,6 +56,8 @@ setup(
             'opensesame_plugins/parallel_port_trigger_init/parallel_port_trigger_init_large.png',
             'opensesame_plugins/parallel_port_trigger_init/parallel_port_trigger_init.py',
             'opensesame_plugins/parallel_port_trigger_init/info.yaml',
+            'opensesame_plugins/parallel_port_trigger_init/parallelppdev.py',
+            'opensesame_plugins/parallel_port_trigger_init/inpout32.dll',
             ]
         ),
         ('share/opensesame_plugins/parallel_port_trigger_send',
