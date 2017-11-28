@@ -20,7 +20,7 @@ controls:
 -
     label: "Port Adress"
     name: "line_edit_port"
-    tooltip: "Adress of the parallel port, value is a hex/dec number (Windows) or path (Linux)"
+    info: "Adress of the parallel port, value is a hexadecimal number (Windows) or path (Linux)"
     type: "line_edit"
     var: "port"
 -

@@ -14,7 +14,7 @@ controls:
 -
     label: "Enable duration"
     name: "checkbox_duration_check"
-    tooltip: "Enable duration?"
+    info: "When enabled, a pulse is created instead of a state change"
     type: "checkbox"
     var: "duration_check"
 -
