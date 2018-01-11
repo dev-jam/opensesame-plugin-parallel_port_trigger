@@ -115,7 +115,7 @@ class parallel_port_trigger_init(item):
                 try:
                     if os.name == 'nt':
                         path_to_dll_file = os.path.join(os.path.dirname(__file__), 'inpout32.dll')
-                        show_message(path_to_dll_file)
+                        self.show_message(path_to_dll_file)
                         self.experiment.pptrigger = windll.LoadLibrary(path_to_dll_file)
 
                         if isinstance(self.var.port,str):
@@ -126,7 +126,7 @@ class parallel_port_trigger_init(item):
 
 
                     else:
-                        show_message(self.var.port)
+                        self.show_message(self.var.port)
                         if isinstance(self.var.port,int):
                             self.port = self.var.port
                         elif isinstance(self.var.port,str):
