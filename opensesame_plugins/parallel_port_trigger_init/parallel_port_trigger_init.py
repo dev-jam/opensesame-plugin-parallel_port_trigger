@@ -126,7 +126,7 @@ class parallel_port_trigger_init(item):
 
 
                     else:
-                        self.show_message(self.var.port)
+                        self.show_message(u'Using parallel port on address: %s' % self.var.port)
                         if isinstance(self.var.port,int):
                             self.port = self.var.port
                         elif isinstance(self.var.port,str):
@@ -189,7 +189,6 @@ class parallel_port_trigger_init(item):
 
         if not hasattr(self.experiment, "pptrigger") or \
             self.experiment.pptrigger is None:
-                self.show_message("no active Parallel port")
                 return
         try:
             self.experiment.pptrigger.close()
