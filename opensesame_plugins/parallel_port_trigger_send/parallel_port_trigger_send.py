@@ -28,7 +28,7 @@ from libqtopensesame.items.qtautoplugin import qtautoplugin
 from libopensesame.exceptions import osexception
 from openexp.keyboard import keyboard
 
-VERSION = u'2017.11-1'
+VERSION = u'2018.6-1'
 
 class parallel_port_trigger_send(item):
 
