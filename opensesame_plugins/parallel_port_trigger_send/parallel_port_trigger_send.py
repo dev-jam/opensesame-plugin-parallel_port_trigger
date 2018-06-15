@@ -67,11 +67,10 @@ class parallel_port_trigger_send(item):
             raise osexception(
                     u'Parallel Port init is missing')
 
-
         self.port = self.experiment.pptrigger_port
-        self.pptrigger = self.experiment.pptrigger
 
-
+        if self.dummy_mode == u'no':
+            self.pptrigger = self.experiment.pptrigger
 
 
     def prepare(self):

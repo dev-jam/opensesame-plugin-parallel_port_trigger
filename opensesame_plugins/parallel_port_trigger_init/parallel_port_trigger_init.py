@@ -155,7 +155,7 @@ class parallel_port_trigger_init(item):
                 raise osexception(
                     u'Wrong port address, could not access the Parallel Port', exception=e)
         elif self.dummy_mode == u'yes':
-            self.show_message(u'Dummy mode enabled, prepare phase')
+            self.show_message(u'Dummy mode enabled for the Parallel Port Trigger Plug-in')
         else:
             self.show_message(u'Error with dummy mode, mode is: %s' % self.dummy_mode)
 
@@ -191,7 +191,6 @@ class parallel_port_trigger_init(item):
             self.experiment.pptrigger is None:
                 return
         try:
-            self.experiment.pptrigger.close()
             self.experiment.pptrigger = None
             self.show_message("Parallel Port closed")
         except:
