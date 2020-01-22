@@ -173,6 +173,7 @@ class qtparallel_port_trigger_send(parallel_port_trigger_send, qtautoplugin):
         if not qtautoplugin.apply_edit_changes(self) or self.lock:
             return False
         self.custom_interactions()
+        return True
 
     def edit_widget(self):
 
