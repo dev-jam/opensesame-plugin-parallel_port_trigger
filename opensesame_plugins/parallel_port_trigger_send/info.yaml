@@ -1,9 +1,9 @@
 description: Parallel Port Trigger - send trigger.
-version: 2017.11-1
+version: 2020.1-1
 author: "Bob Rosbag"
 url: "http://osdoc.cogsci.nl/"
 category: "Parallel Port Trigger"
-date: "2017"
+date: "2020"
 controls:
 -
     label: "Value"
@@ -28,6 +28,6 @@ controls:
       <small><b>Note:</b> Parallel Port Trigger Init item at the begin of the experiment is needed for initialisation of the parallel port</small>
     type: text
 -
-    type: text
-    label: DUMMY
-    name: text_version
+    label:  |
+      <small>Parallel Port Trigger version 2020.1-1</small>
+    type: "text"

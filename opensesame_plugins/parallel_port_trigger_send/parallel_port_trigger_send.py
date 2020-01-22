@@ -28,7 +28,7 @@ from libqtopensesame.items.qtautoplugin import qtautoplugin
 from libopensesame.exceptions import osexception
 from openexp.keyboard import keyboard
 
-VERSION = u'2018.6-1'
+VERSION = u'2020.1-1'
 
 class parallel_port_trigger_send(item):
 
@@ -162,8 +162,6 @@ class qtparallel_port_trigger_send(parallel_port_trigger_send, qtautoplugin):
 
         parallel_port_trigger_send.__init__(self, name, experiment, script)
         qtautoplugin.__init__(self, __file__)
-        self.text_version.setText(
-        u'<small>Parallel Port Trigger version %s</small>' % VERSION)
 
     def apply_edit_changes(self):
 
