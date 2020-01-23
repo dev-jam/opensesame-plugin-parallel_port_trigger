@@ -18,14 +18,14 @@ controls:
     type: "checkbox"
     var: "verbose"
 -
-    label: "Port Adress"
+    label: "Port Address"
     name: "line_edit_port"
-    info: "Adress of the parallel port, value is a hexadecimal number (Windows) or path (Linux)"
+    info: "Address of the parallel port, value is a hexadecimal number (Windows) or path (Linux)"
     type: "line_edit"
     var: "port"
 -
     label: |
-      <small><b>Note:</b> Parallel Port Trigger Init item at the begin of the experiment is needed for initialisation of the parallel port</small>
+      <small><b>Note:</b> Parallel Port Trigger Init item at the begin of the experiment is needed for initialization of the parallel port</small>
     type: text
 -
     label:  |

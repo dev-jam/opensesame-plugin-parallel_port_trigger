@@ -15,7 +15,7 @@ In EEG/ERP studies it is common to send triggers to mark the timestamp for signi
 The plug-in has an *init* item which should be placed at the beginning of an experiment and a *trigger* item for initiating triggers:
 
 - *Dummy mode* for testing experiments.
-- *Port adress* for Windows: hexadecimal or decimal value, for Linux: full path or port number.
+- *Port address* for Windows: hexadecimal or decimal value, for Linux: full path or port number.
 - *Value* is a positive integer between 1-255 and specifies the trigger byte.
 - *Enable duration* option to enable the duration parameter.
 - *Duration* is the duration in ms.

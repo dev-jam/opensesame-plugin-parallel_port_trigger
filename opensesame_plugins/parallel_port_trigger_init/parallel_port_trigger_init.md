@@ -17,7 +17,7 @@ The plug-in has an *init* item which should be placed at the beginning of an exp
 This plug-in has six options:
 - *Dummy mode* for testing experiments.
 - *Verbose mode* for testing experiments.
-- *Port adress* for Windows: hexadecimal or decimal value, for Linux: full path or port number.
+- *Port address* for Windows: hexadecimal or decimal value, for Linux: full path or port number.
 - *Value* is a positive integer between 1-255 and specifies the trigger byte.
 - *Enable duration* option to enable the duration parameter.
 - *Duration* is the duration in ms.
