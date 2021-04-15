@@ -25,7 +25,7 @@ setup(
     # Some general metadata. By convention, a plugin is named:
     # opensesame-plugin-[plugin name]
     name='opensesame-plugin-parallel_port_trigger',
-    version='1.0.5',
+    version='2.0.0',
     description='An OpenSesame Plug-in for sending stimulus synchronization triggers through the parallel port to data acquisition systems.',
     author='Bob Rosbag',
     author_email='b.rosbag@let.ru.nl',
