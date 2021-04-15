@@ -24,12 +24,12 @@ from setuptools import setup
 setup(
     # Some general metadata. By convention, a plugin is named:
     # opensesame-plugin-[plugin name]
-    name='opensesame_plugin_-_parallel_port_trigger',
+    name='opensesame-plugin-parallel_port_trigger',
     version='1.0.5',
     description='An OpenSesame Plug-in for sending stimulus synchronization triggers through the parallel port to data acquisition systems.',
     author='Bob Rosbag',
     author_email='b.rosbag@let.ru.nl',
-    url='https://github.com/dev-jam/opensesame_plugin_-_parallel_port_trigger',
+    url='https://github.com/dev-jam/opensesame-plugin-parallel_port_trigger',
     # Classifiers used by PyPi if you upload the plugin there
     classifiers=[
         'Intended Audience :: Science/Research',
