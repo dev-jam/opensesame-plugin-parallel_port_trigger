@@ -1,0 +1,8 @@
+#!/usr/bin/make -f
+
+export PYBUILD_NAME=opensesame-plugin-parallel-port-trigger
+export DEB_BUILD_OPTIONS=nocheck
+
+%:
+	dh $@ --with python3 --buildsystem=pybuild
+

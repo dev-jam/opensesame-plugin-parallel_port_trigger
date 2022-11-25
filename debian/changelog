@@ -1,0 +1,5 @@
+opensesame-plugin-parallel-port-trigger (2.3.0-1) unstable; urgency=medium
+
+  * new plugin code style
+
+ -- Bob Rosbag <debian@bobrosbag.nl>  Fri, 25 Nov 2022 21:12:46 +0100

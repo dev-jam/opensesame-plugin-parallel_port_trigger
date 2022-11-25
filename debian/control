@@ -1,0 +1,17 @@
+Source: opensesame-plugin-parallel-port-trigger
+Maintainer: Bob Rosbag <debian@bobrosbag.nl>
+Section: python
+Priority: optional
+Build-Depends: dh-python, python3-setuptools, python3-all, debhelper (>= 9)
+Standards-Version: 3.9.6
+Homepage: https://github.com/dev-jam/opensesame-plugin-parallel_port_trigger
+
+Package: python3-opensesame-plugin-parallel-port-trigger
+Architecture: all
+Depends: ${misc:Depends}, ${python3:Depends},
+   python3-opensesame
+Description: An OpenSesame Plug-in for managing/executing multiple OpenSesame experiments
+ This plug-in can insert standalone OpenSesame Experiments within a main experiment.
+ It can run within a loop or sequence as an item. This makes it possible to run a number
+ of experiments in sequence (random or fixed order) and also it gives the possibility to
+ give each experiment its own (different) backend. 
