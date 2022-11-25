@@ -1,5 +1,5 @@
 description: Parallel Port Trigger - initializes the parallel port device.
-version: 2020.1-1
+version: 2.3.0
 author: "Bob Rosbag"
 url: "http://osdoc.cogsci.nl/"
 category: "Parallel Port Trigger"
@@ -29,5 +29,5 @@ controls:
     type: text
 -
     label:  |
-      <small>Parallel Port Trigger version 2020.1-1</small>
+      <small>Parallel Port Trigger version 2.3.0</small>
     type: "text"

@@ -2,7 +2,7 @@
 
 """
 Author: Bob Rosbag
-2017
+2022
 
 This plug-in is free software: you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
@@ -28,16 +28,11 @@ from libopensesame.item import item
 from libqtopensesame.items.qtautoplugin import qtautoplugin
 from libopensesame.exceptions import osexception
 
-VERSION = u'2020.1-1'
+VERSION = u'2.3.0'
+
 
 class parallel_port_trigger_init(item):
 
-    """
-    Parallel Port Trigger class handles the basic functionality of the item.
-    It does not deal with GUI stuff.
-    """
-
-    # Provide an informative description for your plug-in.
     description = u'Parallel Port Trigger: initializes the parallel port device.'
 
     def __init__(self, name, experiment, string=None):
@@ -45,12 +40,8 @@ class parallel_port_trigger_init(item):
         item.__init__(self, name, experiment, string)
         self.verbose = u'no'
 
-
     def reset(self):
 
-        """Resets plug-in to initial values."""
-
-        # Set default experimental variables and values
         self.var.dummy_mode = u'no'
         self.var.verbose = u'no'
 
@@ -59,15 +50,9 @@ class parallel_port_trigger_init(item):
         else:
             self.var.port = u'/dev/parport0'
 
-
-        # Debugging output is only visible when OpenSesame is started with the
-        # --debug argument.
         self.show_message(u'Parallel Port Trigger plug-in has been initialized!')
 
-
     def init_var(self):
-
-        """Set en check variables."""
 
         self.dummy_mode = self.var.dummy_mode
         self.verbose = self.var.verbose
@@ -78,17 +63,12 @@ class parallel_port_trigger_init(item):
 
         self.experiment.var.pptrigger_port = self.var.port
 
-
     def prepare(self):
 
-        """Preparation phase"""
-
-        # Call the parent constructor.
         item.prepare(self)
 
         self.close()
         self.init_var()
-
 
         if self.dummy_mode == u'no':
             if os.name == 'posix':
@@ -161,31 +141,15 @@ class parallel_port_trigger_init(item):
 
     def run(self):
 
-        """Run phase"""
-
-        # self.set_item_onset() sets the time_[item name] variable. Optionally,
-        # you can pass a timestamp, such as returned by canvas.show().
-
         pass
 
-
     def show_message(self, message):
-        """
-        desc:
-            Show message.
-        """
 
         debug.msg(message)
         if self.verbose:
             print(message)
 
-
     def close(self):
-
-        """
-        desc:
-            Neatly close the connection to the parallel port.
-        """
 
         if not hasattr(self.experiment, "pptrigger") or \
             self.experiment.pptrigger is None:
@@ -198,10 +162,8 @@ class parallel_port_trigger_init(item):
 
 
 class qtparallel_port_trigger_init(parallel_port_trigger_init, qtautoplugin):
-
+    
     def __init__(self, name, experiment, script=None):
-
-        """Experiment Manager plug-in GUI"""
 
         parallel_port_trigger_init.__init__(self, name, experiment, script)
         qtautoplugin.__init__(self, __file__)

@@ -3,7 +3,7 @@ OpenSesame Plug-in: Parallel Port Trigger
 
 *An OpenSesame Plug-in for sending stimulus synchronization triggers through the parallel port to data acquisition systems.*  
 
-Copyright, 2021, Bob Rosbag  
+Copyright, 2022, Bob Rosbag  
 
 Contributions: Code is based on the work of Per Sederberg. Debugged and polished by Edwin Dalmaijer.
 

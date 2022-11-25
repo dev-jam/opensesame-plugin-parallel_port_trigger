@@ -1,9 +1,9 @@
 #!/usr/bin/env python
-#-*- coding:utf-8 -*-
+# -*- coding: utf-8 -*-
 
 """
 Author: Bob Rosbag
-2017
+2022
 
 This plug-in is free software: you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
@@ -18,17 +18,25 @@ GNU General Public License for more details.
 You should have received a copy of the GNU General Public License
 along with this plug-in.  If not, see <http://www.gnu.org/licenses/>.
 """
-
+import os
 from setuptools import setup
 
+
+def get_readme():
+
+    if os.path.exists('README.md'):
+        with open('README.md') as fd:
+            return fd.read()
+    return 'No readme information'
+
+
 setup(
-    # Some general metadata. By convention, a plugin is named:
-    # opensesame-plugin-[plugin name]
     name='opensesame-plugin-parallel_port_trigger',
-    version='2.0.0',
+    version='2.3.0',
     description='An OpenSesame Plug-in for sending stimulus synchronization triggers through the parallel port to data acquisition systems.',
+    long_description=get_readme(),
     author='Bob Rosbag',
-    author_email='b.rosbag@let.ru.nl',
+    author_email='debian@bobrosbag.nl',
     url='https://github.com/dev-jam/opensesame-plugin-parallel_port_trigger',
     # Classifiers used by PyPi if you upload the plugin there
     classifiers=[
@@ -38,15 +46,10 @@ setup(
         'Environment :: Win32 (MS Windows)',
         'Environment :: X11 Applications',
         'License :: OSI Approved :: GNU General Public License v3 or later (GPLv3+)',
-        'Programming Language :: Python :: 2',
         'Programming Language :: Python :: 3',
     ],
-    # The important bit that specifies how the plugin files should be installed,
-    # so that they are found by OpenSesame. This is a bit different from normal
-    # Python modules, because an OpenSesame plugin is not a (normal) Python
-    # module.
+    packages=[],
     data_files=[
-        # First the target folder.
         ('share/opensesame_plugins/parallel_port_trigger_init',
         # Then a list of files that are copied into the target folder. Make sure
         # that these files are also included by MANIFEST.in!
@@ -61,8 +64,6 @@ setup(
             ]
         ),
         ('share/opensesame_plugins/parallel_port_trigger_send',
-        # Then a list of files that are copied into the target folder. Make sure
-        # that these files are also included by MANIFEST.in!
         [
             'opensesame_plugins/parallel_port_trigger_send/parallel_port_trigger_send.md',
             'opensesame_plugins/parallel_port_trigger_send/parallel_port_trigger_send.png',
