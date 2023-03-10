@@ -1,4 +1,5 @@
 #-*- coding:utf-8 -*-
+
 """
 Author: Bob Rosbag
 2022
@@ -27,7 +28,7 @@ from libqtopensesame.items.qtautoplugin import qtautoplugin
 from libopensesame.exceptions import osexception
 from openexp.keyboard import keyboard
 
-VERSION = u'2.3.0'
+VERSION = u'3.0.0'
 
 
 class parallel_port_trigger_send(item):
@@ -143,7 +144,7 @@ class qtparallel_port_trigger_send(parallel_port_trigger_send, qtautoplugin):
     we usually need to do hardly anything, because the GUI is defined in
     info.json.
     """
-    
+
     def __init__(self, name, experiment, script=None):
 
         """Constructor.

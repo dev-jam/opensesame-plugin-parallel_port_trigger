@@ -32,7 +32,7 @@ def get_readme():
 
 setup(
     name='opensesame-plugin-parallel_port_trigger',
-    version='2.3.0',
+    version='3.0.0',
     description='An OpenSesame Plug-in for sending stimulus synchronization triggers through the parallel port to data acquisition systems.',
     long_description=get_readme(),
     long_description_content_type='text/markdown',
@@ -60,7 +60,6 @@ setup(
             'opensesame_plugins/parallel_port_trigger_init/parallel_port_trigger_init_large.png',
             'opensesame_plugins/parallel_port_trigger_init/parallel_port_trigger_init.py',
             'opensesame_plugins/parallel_port_trigger_init/info.yaml',
-            'opensesame_plugins/parallel_port_trigger_init/parallelppdev.py',
             'opensesame_plugins/parallel_port_trigger_init/inpout32.dll',
             ]
         ),
