@@ -74,7 +74,16 @@ class parallel_port_trigger_init(item):
                 except ImportError as e:
                     raise osexception(u'The ctypes module can not be loaded. Check if ctypes is installed correctly.', exception=e)
 
-                path_to_dll_file = os.path.join(os.path.dirname(__file__), 'inpout32.dll')
+                import platform
+
+                if platform.architecture()[0] == "32bit":
+                    self.dll_file = 'inpout32.dll'
+                elif platform.architecture()[0] == "64bit":
+                    self.dll_file = 'inpoutx64.dll'
+                else:
+                    raise osexception('Platform not supported')
+
+                path_to_dll_file = os.path.join(os.path.dirname(__file__), self.dll_file)
                 self.show_message(path_to_dll_file)
 
                 try:
