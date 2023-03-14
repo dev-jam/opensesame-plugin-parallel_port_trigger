@@ -61,6 +61,7 @@ setup(
             'opensesame_plugins/parallel_port_trigger_init/parallel_port_trigger_init.py',
             'opensesame_plugins/parallel_port_trigger_init/info.yaml',
             'opensesame_plugins/parallel_port_trigger_init/inpout32.dll',
+            'opensesame_plugins/parallel_port_trigger_init/inpoutx64.dll',
             ]
         ),
         ('share/opensesame_plugins/parallel_port_trigger_send',
