@@ -32,7 +32,7 @@ def get_readme():
 
 setup(
     name='opensesame-plugin-parallel_port_trigger',
-    version='3.1.0',
+    version='3.2.0',
     description='An OpenSesame Plug-in for sending stimulus synchronization triggers through the parallel port to data acquisition systems.',
     long_description=get_readme(),
     long_description_content_type='text/markdown',

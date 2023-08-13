@@ -27,7 +27,7 @@ from libopensesame.item import item
 from libqtopensesame.items.qtautoplugin import qtautoplugin
 from libopensesame.exceptions import osexception
 
-VERSION = u'3.1.0'
+VERSION = u'3.2.0'
 
 
 class parallel_port_trigger_init(item):
