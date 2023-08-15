@@ -1,0 +1,21 @@
+[tool.poetry]
+name = "opensesame-plugin-parallel_port_trigger"
+version = "4.0.0"
+description = "An OpenSesame Plug-in for sending stimulus synchronization triggers through the parallel port to data acquisition systems"
+authors = ["Bob Rosbag <debian@bobrosbag.nl>"]
+readme = "README.md"
+packages = [
+    {include = "opensesame_plugins"},
+]
+license = "LICENSE.md"
+homepage = "https://github.com/dev-jam/opensesame-plugin-parallel_port_trigger"
+repository = "https://github.com/dev-jam/opensesame-plugin-parallel_port_trigger"
+
+[tool.poetry.dependencies]
+python = ">= 3.7"
+opensesame-core = ">= 4.0.0a0"
+pyparallel = ">= 0.2.2"
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"

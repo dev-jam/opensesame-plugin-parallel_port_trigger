@@ -1,4 +1,0 @@
-recursive-include opensesame_plugins *
-global-exclude *.pyc
-global-exclude *.pyo
-global-exclude .DS_Store
