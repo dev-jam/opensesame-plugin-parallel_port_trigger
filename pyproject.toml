@@ -12,8 +12,6 @@ homepage = "https://github.com/dev-jam/opensesame-plugin-parallel_port_trigger"
 repository = "https://github.com/dev-jam/opensesame-plugin-parallel_port_trigger"
 
 [tool.poetry.dependencies]
-python = ">= 3.7"
-opensesame-core = ">= 4.0.0a0"
 pyparallel = ">= 0.2.2"
 
 [build-system]
