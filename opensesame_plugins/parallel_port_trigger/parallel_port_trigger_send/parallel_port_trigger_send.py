@@ -54,7 +54,7 @@ class ParallelPortTriggerSend(Item):
             if self.duration_check == 'yes':
                 self.experiment.var.pptrigger_duration = self.duration
                 if self.duration != 0:
-                    self.kb.get_key(timeout=self.duration)
+                    self.clock.sleep(self.duration)
                     self._show_message('Waiting %s ms to reset' % (self.duration))
                 try:
                     if os.name == 'nt':
