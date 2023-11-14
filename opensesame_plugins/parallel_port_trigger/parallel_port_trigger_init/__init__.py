@@ -27,6 +27,6 @@ controls = [
         "label": "<small><b>Note:</b> Parallel Port Trigger Init item at the begin of the experiment is needed for initialization of the parallel port</small>"
     }, {
         "type": "text",
-        "label": "<small>Parallel Port Trigger version 4.0.1</small>"
+        "label": "<small>Parallel Port Trigger version 4.1.0</small>"
     }
 ]
