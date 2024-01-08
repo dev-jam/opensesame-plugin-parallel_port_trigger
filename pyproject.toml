@@ -12,7 +12,7 @@ homepage = "https://github.com/dev-jam/opensesame-plugin-parallel_port_trigger"
 repository = "https://github.com/dev-jam/opensesame-plugin-parallel_port_trigger"
 
 [tool.poetry.dependencies]
-pyparallel = ">= 0.2.2"
+pyparallel = {version = ">= 0.2.2", platform = "linux"}
 
 [build-system]
 requires = ["poetry-core"]
