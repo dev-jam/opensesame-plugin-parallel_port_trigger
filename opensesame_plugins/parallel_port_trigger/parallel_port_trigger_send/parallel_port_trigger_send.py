@@ -90,7 +90,7 @@ class ParallelPortTriggerSend(Item):
     def _show_message(self, message):
         oslogger.debug(message)
         if self.verbose == 'yes':
-            oslogger.warning(message)
+            print(message)
 
 
 class QtParallelPortTriggerSend(ParallelPortTriggerSend, QtAutoPlugin):

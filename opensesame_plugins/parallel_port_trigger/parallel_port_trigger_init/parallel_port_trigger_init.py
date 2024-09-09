@@ -127,7 +127,7 @@ class ParallelPortTriggerInit(Item):
     def _show_message(self, message):
         oslogger.debug(message)
         if self.verbose == 'yes':
-            oslogger.warning(message)
+            print(message)
 
 
 class qtParallelPortTriggerInit(ParallelPortTriggerInit, QtAutoPlugin):
