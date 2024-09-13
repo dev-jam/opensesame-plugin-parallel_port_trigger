@@ -21,7 +21,7 @@ controls = [
         "var": "port",
         "label": "Port Address",
         "name": "line_edit_port",
-        "tooltip": "Address of the parallel port, value is a hexadecimal number (Windows) or path (Linux)"
+        "tooltip": "Address of the parallel port, value is a hexadecimal number like 0x378 (Windows) or a number X pointing to /dev/parportX (Linux)"
     }, {
         "type": "text",
         "label": "<small><b>Note:</b> Parallel Port Trigger Init item at the begin of the experiment is needed for initialization of the parallel port</small>"
