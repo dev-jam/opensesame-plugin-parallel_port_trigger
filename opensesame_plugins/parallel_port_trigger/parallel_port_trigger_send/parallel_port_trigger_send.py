@@ -47,15 +47,15 @@ class ParallelPortTriggerSend(Item):
                     self.set_item_onset(self.pptrigger.DlPortWritePortUchar(int(self.port, 0), self.value))
                 else:
                     self.set_item_onset(self.pptrigger.setData(self.value))
-                self._show_message('Sending value %s to the parallel port on address: %s' % (self.value, self.port))
+                self._show_message(f'Sending value {self.value} to the parallel port on address: {self.port}')
             except Exception as e:
-                raise OSException('Wrong port address, could not access the Parallel Port\n\nMessage: %s' % e)
+                raise OSException(f'Wrong port address, could not access the Parallel Port\n\nMessage: {e}')
 
             if self.duration_check == 'yes':
                 self.experiment.var.pptrigger_duration = self.duration
                 if self.duration != 0:
                     self.clock.sleep(self.duration)
-                    self._show_message('Waiting %s ms to reset' % (self.duration))
+                    self._show_message(f'Waiting {self.duration} ms to reset')
                 try:
                     if os.name == 'nt':
                         self.pptrigger.DlPortWritePortUchar(int(self.port, 0), 0)
@@ -63,9 +63,9 @@ class ParallelPortTriggerSend(Item):
                         self.pptrigger.setData(0)
                     self._show_message('Resetting the parallel port to zero')
                 except Exception as e:
-                    raise OSException('Wrong port address, could not access the Parallel Port\n\nMessage: %s' % e)
+                    raise OSException(f'Wrong port address, could not access the Parallel Port\n\nMessage: {e}')
         elif self.dummy_mode == 'yes':
-            self._show_message('Dummy mode enabled, NOT sending value %s to the parallel port on address: %s' % (self.value,self.port))
+            self._show_message(f'Dummy mode enabled, NOT sending value {self.value} to the parallel port on address: {self.port}')
         else:
             self._show_message('Error with dummy mode!')
 

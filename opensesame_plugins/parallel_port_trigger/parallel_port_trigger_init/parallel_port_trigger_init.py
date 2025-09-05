@@ -48,7 +48,7 @@ class ParallelPortTriggerInit(Item):
                 try:
                     from ctypes import windll
                 except ImportError as e:
-                    raise OSException('The ctypes module can not be loaded. Check if ctypes is installed correctly.\n\nMessage: %s' % e)
+                    raise OSException(f'The ctypes module can not be loaded. Check if ctypes is installed correctly.\n\nMessage: {e}')
                 import platform
                 if platform.architecture()[0] == "32bit":
                     self.dll_file = 'inpout32.dll'
@@ -63,7 +63,7 @@ class ParallelPortTriggerInit(Item):
                 try:
                     self.experiment.pptrigger = windll.LoadLibrary(path_to_dll_file)
                 except Exception as e:
-                    raise OSException('Could not load parallel port library\n\nMessage: %s' % e)
+                    raise OSException(f'Could not load parallel port library\n\nMessage: {e}')
 
                 if isinstance(self.var.port,str):
                     self.port = self.var.port
@@ -73,10 +73,10 @@ class ParallelPortTriggerInit(Item):
                 try:
                     import parallel
                 except ImportError as e:
-                    raise OSException('The pyparallel module could not be loaded, please make sure pyparallel is installed correctly.\n\nMessage: %s' % e)
+                    raise OSException(f'The pyparallel module could not be loaded, please make sure pyparallel is installed correctly.\n\nMessage: {e}')
 
                 if isinstance(self.var.port,int):
-                    self._show_message('Using parallel port on address: /dev/parport%d' % self.var.port)
+                    self._show_message(f'Using parallel port on address: /dev/parport{self.var.port}')
                     self.port = self.var.port
                 else:
                     raise OSException('Port value should be a integer on Linux')
@@ -85,7 +85,7 @@ class ParallelPortTriggerInit(Item):
                     self.experiment.pptrigger = parallel.Parallel(port=self.port)
                     self._show_message('Parallel Port Trigger plug-in has been initialized!')
                 except Exception as e:
-                    raise OSException('Could not access the parallel port\n\nMessage: %s' % e)
+                    raise OSException(f'Could not access the parallel port\n\nMessage: {e}')
 
             self.experiment.cleanup_functions.append(self.close)
 
@@ -97,11 +97,11 @@ class ParallelPortTriggerInit(Item):
                     self.set_item_onset(self.experiment.pptrigger.setData(0))
                 self._show_message('Resetting the parallel port to all zero')
             except Exception as e:
-                raise OSException('Could not access the Parallel Port\n\nMessage: %s' % e)
+                raise OSException(f'Could not access the Parallel Port\n\nMessage: {e}')
         elif self.dummy_mode == 'yes':
             self._show_message('Dummy mode enabled for the Parallel Port Trigger Plug-in')
         else:
-            self._show_message('Error with dummy mode, mode is: %s' % self.dummy_mode)
+            self._show_message(f'Error with dummy mode, mode is: {self.dummy_mode}')
 
     def close(self):
         if not hasattr(self.experiment, "pptrigger") or \
