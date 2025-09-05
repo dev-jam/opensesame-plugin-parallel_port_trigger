@@ -7,6 +7,11 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+
+## [4.3.0] - 2025-09-05
+
+- convert string handling to f-strings
+
 ## [4.2.0] - 2025-07-17
 
 - license cleanup
@@ -99,7 +104,8 @@ Stable release
 first public release
 
 
-[Unreleased]: https://github.com/dev-jam/opensesame-plugin-parallel_port_trigger/compare/4.2.0...HEAD
+[Unreleased]: https://github.com/dev-jam/opensesame-plugin-parallel_port_trigger/compare/4.3.0...HEAD
+[4.3.0]: https://github.com/dev-jam/opensesame-plugin-parallel_port_trigger/compare/4.2.0...4.3.0
 [4.2.0]: https://github.com/dev-jam/opensesame-plugin-parallel_port_trigger/compare/4.1.0...4.2.0
 [4.1.0]: https://github.com/dev-jam/opensesame-plugin-parallel_port_trigger/compare/4.0.1...4.1.0
 [4.0.1]: https://github.com/dev-jam/opensesame-plugin-parallel_port_trigger/compare/4.0.0...4.0.1
