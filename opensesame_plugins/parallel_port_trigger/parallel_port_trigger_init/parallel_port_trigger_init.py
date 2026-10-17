@@ -75,6 +75,15 @@ class ParallelPortTriggerInit(Item):
     def close(self):
         if getattr(self.experiment, 'pptrigger', None) is None:
             return
+        # Don't leave trigger lines high, e.g. a value sent without duration
+        # when the experiment ends or is aborted.
+        # Only a warning: cleanup also runs after an error, and an exception
+        # here would hide that error.
+        try:
+            self.experiment.pptrigger.setData(0)
+            self._show_message('Resetting the parallel port to all zero')
+        except Exception as e:
+            oslogger.warning(f'Could not reset the parallel port to zero: {e}')
         self.experiment.pptrigger = None
         self._show_message('Parallel Port closed')
 
@@ -103,6 +112,9 @@ class ParallelPortTriggerInit(Item):
             dll = windll.LoadLibrary(path_to_dll_file)
         except Exception as e:
             raise OSException(f'Could not load parallel port library {path_to_dll_file}\n\nMessage: {e}')
+        # Without the driver, writing to the port silently does nothing
+        if not dll.IsInpOutDriverOpen():
+            raise OSException('The InpOut32 driver could not be opened. It is installed the first time it is used, which needs administrator privileges: run OpenSesame once as administrator.')
 
         self._show_message(f'Using parallel port on address: {address:#x}')
         return InpOutPort(dll, address)

@@ -10,6 +10,8 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 - fixed: on Windows the item onset (`time_<item>`) was set to the return value of the DLL call instead of a timestamp
 - fixed: a trigger value outside 0-255 gave the error 'wrong port address' (Linux) or was silently truncated (Windows); it now gives a clear error, also in dummy mode
 - fixed: a negative duration was silently ignored; it now gives an error
+- the port is set back to 0 when the experiment ends or is aborted
+- Windows: an error is given when the InpOut32 driver is not installed, instead of silently sending nothing
 - the duration is now read in the run phase, like the value, so an earlier item can set it; an invalid duration now gives an error in the run phase instead of the prepare phase
 - dummy mode: the send item now sets the item onset (`time_<item>`) and `pptrigger_duration`, and waits for the duration, like with a parallel port
 - dummy mode: a second init item now gives an error, like with a parallel port
