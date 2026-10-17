@@ -88,6 +88,8 @@ class ParallelPortTriggerInit(Item):
         self._show_message('Parallel Port closed')
 
     def _init_var(self):
+        if self.var.dummy_mode not in ('yes', 'no'):
+            raise OSException(f"Dummy mode should be 'yes' or 'no', not: {self.var.dummy_mode}")
         self.dummy_mode = self.var.dummy_mode == 'yes'
         self.verbose = self.var.verbose == 'yes'
         self.port = self.var.port
@@ -102,6 +104,10 @@ class ParallelPortTriggerInit(Item):
             address = int(str(self.port), 0)
         except ValueError:
             raise OSException(f'Port address should be a number like 0x378 on Windows, not: {self.port}')
+        # Lower I/O addresses are not parallel ports, e.g. 0 when the Linux
+        # port number is entered
+        if address < 0x100:
+            raise OSException(f'Port address should be a parallel port address like 0x378 (0x100 or higher) on Windows, not: {self.port}')
 
         architecture = platform.architecture()[0]
         if architecture not in DLL_FILES:

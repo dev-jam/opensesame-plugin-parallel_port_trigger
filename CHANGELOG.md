@@ -5,6 +5,12 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
 and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 
+## [Unreleased]
+
+- fixed: since 5.0.0, a dummy mode value other than 'yes' or 'no' (e.g. from a variable) was treated as 'no' and opened the parallel port; before 5.0.0 the plug-in then sent nothing; it now gives an error
+- fixed: since 5.0.0, a Windows port address below 0x100, such as 0 (the Linux port number), was accepted and written to; it now gives an error
+- note: 5.0.0 also changed the verbose messages, which its changelog does not list: 'Waiting <n> ms to reset' and 'Resetting the parallel port to zero' became one message 'Waited <n> ms to reset the parallel port to zero' (also for a duration of 0); closing the port also prints 'Resetting the parallel port to all zero'; on Windows 'Loading <dll>' and 'Using parallel port on address: <address>' were added
+
 ## [5.0.0] - 2026-10-17
 
 - fixed: license in package metadata (was shown as proprietary on PyPI)
