@@ -1,5 +1,7 @@
 """Parallel Port Trigger - initializes the parallel port device"""
 
+from .. import __version__
+
 # The category determines the group for the plugin in the item toolbar
 category = "Parallel Port Trigger"
 # Defines the GUI controls
@@ -27,6 +29,6 @@ controls = [
         "label": "<small><b>Note:</b> Parallel Port Trigger Init item at the begin of the experiment is needed for initialization of the parallel port</small>"
     }, {
         "type": "text",
-        "label": "<small>Parallel Port Trigger version 5.0.0</small>"
+        "label": f"<small>Parallel Port Trigger version {__version__}</small>"
     }
 ]

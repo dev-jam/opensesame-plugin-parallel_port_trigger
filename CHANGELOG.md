@@ -21,6 +21,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 - Windows: the port address may also be a decimal number; an invalid address now gives a clear error in the init item
 - the init item no longer imports Qt; removed the unused `qtParallelPortTriggerInit` class
 - removed `libopensesame.py3compat`
+- the version label in the items is read from the installed package, so the version is only set in `pyproject.toml`
 - `experiment.pptrigger_dummy_mode` and `experiment.pptrigger_verbose` are now booleans instead of 'yes'/'no'
 - on Windows `experiment.pptrigger` is a wrapper with `setData()`, like pyparallel on Linux; it passes other calls on to the DLL
 
