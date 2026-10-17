@@ -92,9 +92,10 @@ class ParallelPortTriggerInit(Item):
             # reset trigger
             try:
                 if os.name == 'nt':
-                    self.set_item_onset(self.experiment.pptrigger.DlPortWritePortUchar(int(self.port, 0), 0))
+                    self.experiment.pptrigger.DlPortWritePortUchar(int(self.port, 0), 0)
                 else:
-                    self.set_item_onset(self.experiment.pptrigger.setData(0))
+                    self.experiment.pptrigger.setData(0)
+                self.set_item_onset()
                 self._show_message('Resetting the parallel port to all zero')
             except Exception as e:
                 raise OSException(f'Could not access the Parallel Port\n\nMessage: {e}')

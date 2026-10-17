@@ -40,13 +40,16 @@ class ParallelPortTriggerSend(Item):
 
     def run(self):
         self.value = self.var.value
+        if not isinstance(self.value, int) or not 0 <= self.value <= 255:
+            raise OSException(f'Value should be an integer between 0 and 255, not: {self.value}')
 
         if self.dummy_mode == 'no':
             try:
                 if os.name == 'nt':
-                    self.set_item_onset(self.pptrigger.DlPortWritePortUchar(int(self.port, 0), self.value))
+                    self.pptrigger.DlPortWritePortUchar(int(self.port, 0), self.value)
                 else:
-                    self.set_item_onset(self.pptrigger.setData(self.value))
+                    self.pptrigger.setData(self.value)
+                self.set_item_onset()
                 self._show_message(f'Sending value {self.value} to the parallel port on address: {self.port}')
             except Exception as e:
                 raise OSException(f'Wrong port address, could not access the Parallel Port\n\nMessage: {e}')
@@ -78,10 +81,10 @@ class ParallelPortTriggerSend(Item):
         if self.dummy_mode == 'no':
             self.pptrigger = self.experiment.pptrigger
         if self.duration_check == 'yes':
-            if isinstance(self.var.duration, int):
+            if isinstance(self.var.duration, int) and self.var.duration >= 0:
                 self.duration = int(self.var.duration)
             else:
-                raise OSException('Duration should be a integer')
+                raise OSException(f'Duration should be a non-negative integer, not: {self.var.duration}')
 
     def _check_init(self):
         if not hasattr(self.experiment, 'pptrigger_dummy_mode'):
