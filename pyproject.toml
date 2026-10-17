@@ -7,7 +7,7 @@ readme = "README.md"
 packages = [
     {include = "opensesame_plugins"},
 ]
-license = "LICENSE.md"
+license = "GPL-3.0-or-later"
 homepage = "https://github.com/dev-jam/opensesame-plugin-parallel_port_trigger"
 repository = "https://github.com/dev-jam/opensesame-plugin-parallel_port_trigger"
 
