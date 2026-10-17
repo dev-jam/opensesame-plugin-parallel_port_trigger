@@ -7,6 +7,8 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [5.0.0] - 2026-10-17
 
+- fixed: license in package metadata (was shown as proprietary on PyPI)
+- fixed: dependency changed to python >= 3.10
 - fixed: on Windows the item onset (`time_<item>`) was set to the return value of the DLL call instead of a timestamp
 - fixed: a trigger value outside 0-255 gave the error 'wrong port address' (Linux) or was silently truncated (Windows); it now gives a clear error, also in dummy mode
 - fixed: a negative duration was silently ignored; it now gives an error
