@@ -5,7 +5,7 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
 and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 
-## [Unreleased]
+## [5.0.0] - 2026-10-17
 
 - fixed: on Windows the item onset (`time_<item>`) was set to the return value of the DLL call instead of a timestamp
 - fixed: a trigger value outside 0-255 gave the error 'wrong port address' (Linux) or was silently truncated (Windows); it now gives a clear error, also in dummy mode
@@ -118,7 +118,8 @@ Stable release
 first public release
 
 
-[Unreleased]: https://github.com/dev-jam/opensesame-plugin-parallel_port_trigger/compare/4.3.0...HEAD
+[Unreleased]: https://github.com/dev-jam/opensesame-plugin-parallel_port_trigger/compare/5.0.0...HEAD
+[5.0.0]: https://github.com/dev-jam/opensesame-plugin-parallel_port_trigger/compare/4.3.0...5.0.0
 [4.3.0]: https://github.com/dev-jam/opensesame-plugin-parallel_port_trigger/compare/4.2.0...4.3.0
 [4.2.0]: https://github.com/dev-jam/opensesame-plugin-parallel_port_trigger/compare/4.1.0...4.2.0
 [4.1.0]: https://github.com/dev-jam/opensesame-plugin-parallel_port_trigger/compare/4.0.1...4.1.0
