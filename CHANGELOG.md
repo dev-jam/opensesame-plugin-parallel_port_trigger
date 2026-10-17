@@ -5,7 +5,7 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
 and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 
-## [Unreleased]
+## [5.0.1] - 2026-10-18
 
 - fixed: since 5.0.0, a dummy mode value other than 'yes' or 'no' (e.g. from a variable) was treated as 'no' and opened the parallel port; before 5.0.0 the plug-in then sent nothing; it now gives an error
 - fixed: since 5.0.0, a Windows port address below 0x100, such as 0 (the Linux port number), was accepted and written to; it now gives an error
@@ -127,7 +127,8 @@ Stable release
 first public release
 
 
-[Unreleased]: https://github.com/dev-jam/opensesame-plugin-parallel_port_trigger/compare/5.0.0...HEAD
+[Unreleased]: https://github.com/dev-jam/opensesame-plugin-parallel_port_trigger/compare/5.0.1...HEAD
+[5.0.1]: https://github.com/dev-jam/opensesame-plugin-parallel_port_trigger/compare/5.0.0...5.0.1
 [5.0.0]: https://github.com/dev-jam/opensesame-plugin-parallel_port_trigger/compare/4.3.0...5.0.0
 [4.3.0]: https://github.com/dev-jam/opensesame-plugin-parallel_port_trigger/compare/4.2.0...4.3.0
 [4.2.0]: https://github.com/dev-jam/opensesame-plugin-parallel_port_trigger/compare/4.1.0...4.2.0
