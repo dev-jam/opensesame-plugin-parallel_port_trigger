@@ -10,6 +10,15 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 - fixed: on Windows the item onset (`time_<item>`) was set to the return value of the DLL call instead of a timestamp
 - fixed: a trigger value outside 0-255 gave the error 'wrong port address' (Linux) or was silently truncated (Windows); it now gives a clear error, also in dummy mode
 - fixed: a negative duration was silently ignored; it now gives an error
+- the duration is now read in the run phase, like the value, so an earlier item can set it; an invalid duration now gives an error in the run phase instead of the prepare phase
+- dummy mode: the send item now sets the item onset (`time_<item>`) and `pptrigger_duration`, and waits for the duration, like with a parallel port
+- dummy mode: a second init item now gives an error, like with a parallel port
+- verbose messages are printed after the pulse instead of during it, so they no longer make the pulse longer
+- Windows: the port address may also be a decimal number; an invalid address now gives a clear error in the init item
+- the init item no longer imports Qt; removed the unused `qtParallelPortTriggerInit` class
+- removed `libopensesame.py3compat`
+- `experiment.pptrigger_dummy_mode` and `experiment.pptrigger_verbose` are now booleans instead of 'yes'/'no'
+- on Windows `experiment.pptrigger` is a wrapper with `setData()`, like pyparallel on Linux; it passes other calls on to the DLL
 
 ## [4.3.0] - 2025-09-05
 

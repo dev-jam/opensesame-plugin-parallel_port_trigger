@@ -8,8 +8,8 @@ controls = [
         "type": "line_edit",
         "var": "value",
         "label": "Value",
-        "name": "line_edit_port",
-        "tooltip": "Value to set port"
+        "name": "line_edit_value",
+        "tooltip": "Value to set the port to, an integer between 0 and 255"
     }, {
         "type": "checkbox",
         "var": "duration_check",
