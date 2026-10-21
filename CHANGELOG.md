@@ -8,6 +8,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 ## [Unreleased]
 
 - fixed: since 5.0.0, a Windows port address without 0x, such as 0378 (how Device Manager shows 0x378), was read as the decimal number 378 (0x17a) and written to; it now gives an error, as before 5.0.0; decimal addresses are no longer accepted, because OpenSesame stores both as the same number
+- the items show a short hint next to the port address, value, dummy mode and duration settings; their tooltips were never shown by OpenSesame and are removed
 
 ## [5.0.1] - 2026-10-18
 
