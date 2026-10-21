@@ -17,7 +17,7 @@ The plug-in has an *init* item which should be placed at the beginning of an exp
 - *Dummy mode* for testing experiments without a parallel port.
 - *Verbose mode* prints messages about what the items do.
 - *Port address* for Windows: hexadecimal, starting with 0x (0x378; Device Manager shows it as 0378), for Linux: port number (0 in /dev/parport0).
-- *Value* is an integer between 0 and 255 and specifies the trigger byte. It may be a variable, such as `[trigger]`.
+- *Value* is an integer between 0 and 255 and specifies the trigger byte. It may be a variable, such as `{trigger}`.
 - *Enable duration* option to enable the duration parameter: the port is set back to 0 after the duration (a pulse).
 - *Duration* is the duration in ms. It may be a variable.
 
