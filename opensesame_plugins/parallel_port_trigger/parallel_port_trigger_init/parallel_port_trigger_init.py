@@ -109,10 +109,10 @@ class ParallelPortTriggerInit(Item):
             address = None
         if address is None:
             raise OSException(f'Port address should be a hexadecimal number starting with 0x, like 0x378, on Windows, not: {self.port}\n\nDevice Manager shows addresses without 0x: write 0378 as 0x378.')
-        # Lower I/O addresses are not parallel ports, e.g. 0 when the Linux
-        # port number is entered
-        if address < 0x100:
-            raise OSException(f'Port address should be a parallel port address like 0x378 (0x100 or higher) on Windows, not: {self.port}')
+        # Lower I/O addresses are not parallel ports, e.g. 0x0. I/O addresses
+        # are 16-bit: a higher address doesn't fit the DLL's port argument
+        if not 0x100 <= address <= 0xFFFF:
+            raise OSException(f'Port address should be a parallel port address between 0x100 and 0xFFFF on Windows, like 0x378, not: {self.port}')
 
         architecture = platform.architecture()[0]
         if architecture not in DLL_FILES:
