@@ -5,7 +5,7 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
 and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 
-## [Unreleased]
+## [5.0.2] - 2026-10-21
 
 - fixed: since 5.0.0, a Windows port address without 0x, such as 0378 (how Device Manager shows 0x378), was read as the decimal number 378 (0x17a) and written to; it now gives an error, as before 5.0.0; decimal addresses are no longer accepted, because OpenSesame stores both as the same number
 - the items show a short hint next to the port address, value, dummy mode and duration settings; their tooltips were never shown by OpenSesame and are removed
@@ -135,7 +135,8 @@ Stable release
 first public release
 
 
-[Unreleased]: https://github.com/dev-jam/opensesame-plugin-parallel_port_trigger/compare/5.0.1...HEAD
+[Unreleased]: https://github.com/dev-jam/opensesame-plugin-parallel_port_trigger/compare/5.0.2...HEAD
+[5.0.2]: https://github.com/dev-jam/opensesame-plugin-parallel_port_trigger/compare/5.0.1...5.0.2
 [5.0.1]: https://github.com/dev-jam/opensesame-plugin-parallel_port_trigger/compare/5.0.0...5.0.1
 [5.0.0]: https://github.com/dev-jam/opensesame-plugin-parallel_port_trigger/compare/4.3.0...5.0.0
 [4.3.0]: https://github.com/dev-jam/opensesame-plugin-parallel_port_trigger/compare/4.2.0...4.3.0
