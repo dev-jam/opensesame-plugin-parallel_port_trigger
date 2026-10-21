@@ -100,10 +100,15 @@ class ParallelPortTriggerInit(Item):
     def _open_windows(self):
         from ctypes import windll
 
+        # Only a string, such as 0x378: OpenSesame stores an address without
+        # 0x, such as 0378 (how Device Manager shows 0x378), as the number
+        # 378, which can't be told apart from a decimal address
         try:
-            address = int(str(self.port), 0)
+            address = int(self.port, 0) if isinstance(self.port, str) else None
         except ValueError:
-            raise OSException(f'Port address should be a number like 0x378 on Windows, not: {self.port}')
+            address = None
+        if address is None:
+            raise OSException(f'Port address should be a hexadecimal number starting with 0x, like 0x378, on Windows, not: {self.port}\n\nDevice Manager shows addresses without 0x: write 0378 as 0x378.')
         # Lower I/O addresses are not parallel ports, e.g. 0 when the Linux
         # port number is entered
         if address < 0x100:
