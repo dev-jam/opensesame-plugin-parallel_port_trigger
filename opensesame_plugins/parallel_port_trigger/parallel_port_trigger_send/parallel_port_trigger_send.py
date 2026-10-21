@@ -76,6 +76,10 @@ class ParallelPortTriggerSend(Item):
         self.verbose = self.experiment.pptrigger_verbose
         self.port = self.experiment.pptrigger_port
         self.pptrigger = None if self.dummy_mode else self.experiment.pptrigger
+        # Otherwise a value such as 'Yes' from a variable would leave the
+        # trigger on the port instead of sending a pulse
+        if self.var.duration_check not in ('yes', 'no'):
+            raise OSException(f"Enable duration should be 'yes' or 'no', not: {self.var.duration_check}")
         self.duration_check = self.var.duration_check == 'yes'
 
     def _check_init(self):

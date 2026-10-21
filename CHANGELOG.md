@@ -11,6 +11,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 - the items show a short hint next to the port address, value, dummy mode and duration settings; their tooltips were never shown by OpenSesame and are removed
 - readme: macOS is not supported (only dummy mode works there); verbose mode is described
 - fixed: a Windows port address above 0xFFFF, outside the 16-bit I/O address range, was accepted and written to; it now gives an error
+- fixed: an enable duration value other than 'yes' or 'no' (e.g. 'Yes' from a variable) was treated as 'no', so the value stayed on the port instead of a pulse; it now gives an error in the prepare phase
 
 ## [5.0.1] - 2026-10-18
 
