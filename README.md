@@ -14,7 +14,8 @@ In EEG/ERP studies it is common to send triggers to mark the timestamp for signi
 
 The plug-in has an *init* item which should be placed at the beginning of an experiment and a *trigger* item for initiating triggers:
 
-- *Dummy mode* for testing experiments.
+- *Dummy mode* for testing experiments without a parallel port.
+- *Verbose mode* prints messages about what the items do.
 - *Port address* for Windows: hexadecimal, starting with 0x (0x378; Device Manager shows it as 0378), for Linux: port number (0 in /dev/parport0).
 - *Value* is an integer between 0 and 255 and specifies the trigger byte. It may be a variable, such as `[trigger]`.
 - *Enable duration* option to enable the duration parameter: the port is set back to 0 after the duration (a pulse).
@@ -29,9 +30,7 @@ At the end of the experiment, also after an abort, the port is set back to 0.
 
 In dummy mode no port is opened, but the items still check their values and wait for the duration, so an experiment behaves the same as with a parallel port.
 
-
-
-Linux and Windows are supported (possible also OSX, not tested). On Linux the [pyparallel](https://github.com/pyserial/pyparallel) package is used. On Windows the bundled InpOut32 driver (`inpout32.dll` / `inpoutx64.dll`) is used. This driver is installed the first time it is used, which needs administrator privileges: run OpenSesame once as administrator (see `InpOut32Drv_ReadMe.txt`).
+Linux and Windows are supported. macOS is not: pyparallel is only installed on Linux and needs the Linux parallel port driver (`/dev/parportX`); only dummy mode works there. On Linux the [pyparallel](https://github.com/pyserial/pyparallel) package is used. On Windows the bundled InpOut32 driver (`inpout32.dll` / `inpoutx64.dll`) is used. This driver is installed the first time it is used, which needs administrator privileges: run OpenSesame once as administrator (see `InpOut32Drv_ReadMe.txt`).
 
 
 Documentation: <http://osdoc.cogsci.nl/devices/triggers/>
