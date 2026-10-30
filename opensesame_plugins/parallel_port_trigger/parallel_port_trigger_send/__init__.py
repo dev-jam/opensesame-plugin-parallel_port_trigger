@@ -14,15 +14,15 @@ controls = [
         "info": "0-255"
     }, {
         "type": "checkbox",
-        "var": "duration_check",
-        "label": "Enable duration",
-        "name": "checkbox_duration_check",
-        "info": "Set the port back to 0 after the duration"
+        "var": "pulse_mode",
+        "label": "Enable pulse mode",
+        "name": "checkbox_pulse_mode",
+        "info": "Set the port back to 0 after the pulse time"
     }, {
         "type": "line_edit",
-        "var": "duration",
-        "label": "Duration (ms)",
-        "name": "line_edit_duration"
+        "var": "pulse_time",
+        "label": "Pulse time (ms)",
+        "name": "line_edit_pulse_time"
     }, {
         "type": "text",
         "label": "<small><b>Note:</b> a Parallel Port Trigger Init item at the start of the experiment is needed to initialize the parallel port</small>"

@@ -5,6 +5,12 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
 and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 
+## [Unreleased]
+
+- the send item's *Enable duration* and *Duration* are now called *Enable pulse mode* and *Pulse time*, as in the radboudbox plug-in, also in the script (`pulse_mode`, `pulse_time` instead of `duration_check`, `duration`) and in the error messages
+- the old names in an experiment or set by an inline script are converted, with a warning; warning: versions up to 5.0.2 ignore the new names, so an experiment saved with this version sends no pulse there (the value stays on the port)
+- the send item also logs the pulse time as `pptrigger_pulse_time`; `pptrigger_duration` stays
+
 ## [5.0.2] - 2026-10-21
 
 - fixed: since 5.0.0, a Windows port address without 0x, such as 0378 (how Device Manager shows 0x378), was read as the decimal number 378 (0x17a) and written to; it now gives an error, as before 5.0.0; decimal addresses are no longer accepted, because OpenSesame stores both as the same number
