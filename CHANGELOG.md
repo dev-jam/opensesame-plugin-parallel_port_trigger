@@ -5,7 +5,7 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
 and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 
-## [Unreleased]
+## [5.1.0] - 2026-10-30
 
 - the send item's *Enable duration* and *Duration* are now called *Enable pulse mode* and *Pulse time*, as in the radboudbox plug-in, also in the script (`pulse_mode`, `pulse_time` instead of `duration_check`, `duration`) and in the error messages
 - the old names in an experiment or set by an inline script are converted, with a warning; warning: versions up to 5.0.2 ignore the new names, so an experiment saved with this version sends no pulse there (the value stays on the port)
@@ -141,7 +141,8 @@ Stable release
 first public release
 
 
-[Unreleased]: https://github.com/dev-jam/opensesame-plugin-parallel_port_trigger/compare/5.0.2...HEAD
+[Unreleased]: https://github.com/dev-jam/opensesame-plugin-parallel_port_trigger/compare/5.1.0...HEAD
+[5.1.0]: https://github.com/dev-jam/opensesame-plugin-parallel_port_trigger/compare/5.0.2...5.1.0
 [5.0.2]: https://github.com/dev-jam/opensesame-plugin-parallel_port_trigger/compare/5.0.1...5.0.2
 [5.0.1]: https://github.com/dev-jam/opensesame-plugin-parallel_port_trigger/compare/5.0.0...5.0.1
 [5.0.0]: https://github.com/dev-jam/opensesame-plugin-parallel_port_trigger/compare/4.3.0...5.0.0
