@@ -1,0 +1,27 @@
+Source: opensesame-plugin-parallel-port-trigger
+Section: python
+Priority: optional
+Maintainer: Bob Rosbag <debian@bobrosbag.nl>
+Build-Depends: debhelper-compat (= 13),
+               dh-sequence-python3,
+               pybuild-plugin-pyproject,
+               python3-all,
+               python3-poetry-core,
+Standards-Version: 4.7.2
+Rules-Requires-Root: no
+Homepage: https://github.com/dev-jam/opensesame-plugin-parallel_port_trigger
+Vcs-Browser: https://github.com/dev-jam/opensesame-plugin-parallel_port_trigger/tree/debian/latest
+Vcs-Git: https://github.com/dev-jam/opensesame-plugin-parallel_port_trigger.git -b debian/latest
+
+Package: python3-opensesame-plugin-parallel-port-trigger
+Architecture: all
+# OpenSesame (and PsychoPy) are not in Debian yet: add them to Depends
+# when they are.
+Depends: ${misc:Depends},
+         ${python3:Depends},
+         python3-parallel (>= 0.2.2),
+Description: OpenSesame plugin for sending triggers through the parallel port
+ This plugin for the OpenSesame experiment builder sends
+ stimulus synchronization triggers (0-255) through the parallel
+ port to data acquisition systems, for example for EEG. On Linux
+ it uses pyparallel (/dev/parportX).

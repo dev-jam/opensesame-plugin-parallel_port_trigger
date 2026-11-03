@@ -1,0 +1,39 @@
+Packaging workflow
+------------------
+
+The branch debian/latest holds the packaging; upstream is the branch
+main, and each release has a tag X.Y.Z (the version in pyproject.toml).
+
+The packages are for my own repository; the distribution in
+debian/changelog is trixie (the suite sbuild builds for).
+
+Build the release in debian/changelog:
+
+  sbuild-local
+
+It gets the orig tarball with uscan (debian/watch, git mode: it reads
+the tags with git) and builds for trixie with sbuild. Or with gbp,
+which makes the orig tarball from the tag (debian/gbp.conf):
+
+  gbp buildpackage --git-builder="sbuild -d trixie"
+
+New upstream release X.Y.Z:
+
+  git checkout debian/latest
+  git merge X.Y.Z
+  dch -v X.Y.Z-1 -D trixie "New upstream release."
+  git commit -am "new upstream release X.Y.Z"
+  sbuild-local
+
+The run-time dependencies are in debian/control, not taken from the
+wheel (dh_python3 --no-guessing-deps): check them against
+pyproject.toml at each new release. OpenSesame and PsychoPy are not in
+Debian yet; add them to Depends when they are.
+
+The InpOut32 DLLs are prebuilt Windows binaries without source (only
+used on Windows). debian/copyright excludes them (Files-Excluded), so
+uscan repacks the tarball without them; a tarball made from the git tag
+still has them, and debian/rules removes them from the package. For an
+upload to Debian, use the tarball of uscan.
+
+ -- Bob Rosbag <debian@bobrosbag.nl>  Tue, 03 Nov 2026

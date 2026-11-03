@@ -1,0 +1,28 @@
+#!/usr/bin/make -f
+
+export PYBUILD_NAME = opensesame_plugins
+# The plugins have no test suite, and importing them needs OpenSesame.
+export PYBUILD_DISABLE = test
+
+%:
+	dh $@ --buildsystem=pybuild
+
+# The run-time dependencies are listed in debian/control: guessing them
+# from the wheel would add PsychoPy (not in Debian yet) and miss the
+# Debian names of packages that dh-python doesn't know.
+override_dh_python3:
+	dh_python3 --no-guessing-deps
+
+override_dh_installchangelogs:
+	dh_installchangelogs CHANGELOG.md
+
+# Some modules have the executable bit set in git, without a shebang.
+execute_after_dh_fixperms:
+	find debian/*/usr/lib/python3 -name '*.py' -exec chmod a-x {} +
+
+# Windows DLLs (InpOut32): only used on Windows; see debian/copyright.
+# A source tarball made with uscan doesn't have them (Files-Excluded),
+# one made from the git tag does.
+execute_after_dh_auto_install:
+	find debian/python3-opensesame-plugin-parallel-port-trigger -iname '*.dll' -delete
+	! find debian/python3-opensesame-plugin-parallel-port-trigger -iname '*.dll' | grep .

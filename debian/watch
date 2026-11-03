@@ -1,0 +1,4 @@
+version=4
+opts="mode=git, pgpmode=none" \
+  https://github.com/dev-jam/opensesame-plugin-parallel_port_trigger.git \
+  refs/tags/(\d[\d.]*)
