@@ -1,0 +1,4 @@
+# The InpOut32 DLLs are in git but not in the orig tarball (Files-Excluded
+# in debian/copyright): ignore them when the source package is built from
+# a git checkout.
+extend-diff-ignore = "(?:^|/)inpout(?:32|x64)\.dll$"
