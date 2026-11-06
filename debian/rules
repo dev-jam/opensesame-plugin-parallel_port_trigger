@@ -20,9 +20,10 @@ override_dh_installchangelogs:
 execute_after_dh_fixperms:
 	find debian/*/usr/lib/python3 -name '*.py' -exec chmod a-x {} +
 
-# Windows DLLs (InpOut32): only used on Windows; see debian/copyright.
+# Windows DLLs (InpOut32) and their licence text: only used on Windows;
+# see debian/copyright.
 # A source tarball made with uscan doesn't have them (Files-Excluded),
 # one made from the git tag does.
 execute_after_dh_auto_install:
-	find debian/python3-opensesame-plugin-parallel-port-trigger -iname '*.dll' -delete
+	find debian/python3-opensesame-plugin-parallel-port-trigger \( -iname '*.dll' -o -name InpOut32Drv_license.txt \) -delete
 	! find debian/python3-opensesame-plugin-parallel-port-trigger -iname '*.dll' | grep .

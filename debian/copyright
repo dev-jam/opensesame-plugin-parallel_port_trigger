@@ -1,14 +1,16 @@
 Format: https://www.debian.org/doc/packaging-manuals/copyright-format/1.0/
 Upstream-Name: opensesame-plugin-parallel_port_trigger
-Upstream-Contact: Bob Rosbag <debian@bobrosbag.nl>
+Upstream-Contact: Bob Rosbag <mail@bobrosbag.nl>
 Source: https://github.com/dev-jam/opensesame-plugin-parallel_port_trigger
 Files-Excluded: opensesame_plugins/parallel_port_trigger/parallel_port_trigger_init/inpout32.dll
                 opensesame_plugins/parallel_port_trigger/parallel_port_trigger_init/inpoutx64.dll
 Comment: The InpOut32 DLLs are prebuilt Windows binaries without
- source; the plugin only loads them on Windows.
+ source; the plugin only loads them on Windows. debian/rules also
+ removes their MIT licence text (InpOut32Drv_license.txt) from the
+ package.
 
 Files: *
-Copyright: 2022-2026 Bob Rosbag
+Copyright: 2013-2026 Bob Rosbag
            Per Sederberg
            Edwin Dalmaijer
 License: GPL-3+
