@@ -1,3 +1,6 @@
+# Copyright (C) 2013-2026 Bob Rosbag <mail@bobrosbag.nl>, Per Sederberg, Edwin Dalmaijer and contributors
+# SPDX-License-Identifier: GPL-3.0-or-later
+
 """Parallel Port Trigger - initializes the parallel port device"""
 
 from .. import __version__
