@@ -3,7 +3,7 @@ OpenSesame Plug-in: Parallel Port Trigger
 
 *An OpenSesame plug-in for sending stimulus synchronization triggers through the parallel port to data acquisition systems.*  
 
-Copyright, 2022, Bob Rosbag  
+Copyright (C) 2013-2026 Bob Rosbag, Per Sederberg, Edwin Dalmaijer and contributors  
 
 Contributions: Code is based on the work of Per Sederberg. Debugged and polished by Edwin Dalmaijer.
 
@@ -42,11 +42,11 @@ Documentation: <http://osdoc.cogsci.nl/devices/triggers/>
 
 ## License
 
-This software is distributed under the terms of the GNU General Public License 3. The full license should be included in the file `COPYING`, or can be obtained from:
+This plugin is free software: you can redistribute it and/or modify it under the terms of the GNU General Public License as published by the Free Software Foundation, either version 3 of the License, or (at your option) any later version (GPL-3.0-or-later).
 
-- <http://www.gnu.org/licenses/gpl.txt>
+The full license text is in the file `COPYING`, and is also available at <https://www.gnu.org/licenses/gpl-3.0.html>.
 
-This plug-in contains works of others.
+This plug-in contains works of others. The bundled InpOut32 driver DLLs (`inpout32.dll`, `inpoutx64.dll`) are Copyright (c) 2003-2015 Phil Gibbons, portions Copyright (c) 2000 logix4u.net, and are distributed under the MIT license; its text is in `opensesame_plugins/parallel_port_trigger/parallel_port_trigger_init/InpOut32Drv_license.txt`, next to the DLLs.
 
 
 ## Documentation

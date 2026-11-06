@@ -5,6 +5,11 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
 and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 
+## [Unreleased]
+
+- changed: the licence is stated as GPL-3.0-or-later (README, `__license__`); the source files carry a copyright notice instead of the header of the OpenSesame example plugin; the copyright years in the README run from the first release; the authors e-mail is mail@bobrosbag.nl
+- fixed: the MIT licence text of the bundled InpOut32 DLLs was not in the package; it is now installed next to `inpout32.dll` and `inpoutx64.dll`
+
 ## [5.1.0] - 2026-10-30
 
 - the send item's *Enable duration* and *Duration* are now called *Enable pulse mode* and *Pulse time*, as in the radboudbox plug-in, also in the script (`pulse_mode`, `pulse_time` instead of `duration_check`, `duration`) and in the error messages

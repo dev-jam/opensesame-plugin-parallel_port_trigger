@@ -1,3 +1,6 @@
+# Copyright (C) 2013-2026 Bob Rosbag <mail@bobrosbag.nl>, Per Sederberg, Edwin Dalmaijer and contributors
+# SPDX-License-Identifier: GPL-3.0-or-later
+
 from importlib.metadata import PackageNotFoundError, version
 
 # These packages will be checked by the updater extension for updates on
