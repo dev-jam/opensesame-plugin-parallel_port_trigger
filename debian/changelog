@@ -1,3 +1,9 @@
+opensesame-plugin-parallel-port-trigger (5.1.2-1) trixie; urgency=medium
+
+  * New upstream release.
+
+ -- Bob Rosbag <debian@bobrosbag.nl>  Sun, 08 Nov 2026 17:05:57 +0100
+
 opensesame-plugin-parallel-port-trigger (5.1.1-1) trixie; urgency=medium
 
   * New upstream release.
