@@ -5,7 +5,7 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
 and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 
-## [Unreleased]
+## [5.1.3] - 2026-11-08
 
 - changed: when the InpOut32 driver can't be opened on Windows, the error lists the possible causes: not installed yet (run OpenSesame once as administrator, as before), Memory integrity on, or Windows 11's policy for cross-signed drivers since the April 2026 update; the readme describes these limits of InpOut32
 
@@ -155,7 +155,8 @@ Stable release
 first public release
 
 
-[Unreleased]: https://github.com/dev-jam/opensesame-plugin-parallel_port_trigger/compare/5.1.2...HEAD
+[Unreleased]: https://github.com/dev-jam/opensesame-plugin-parallel_port_trigger/compare/5.1.3...HEAD
+[5.1.3]: https://github.com/dev-jam/opensesame-plugin-parallel_port_trigger/compare/5.1.2...5.1.3
 [5.1.2]: https://github.com/dev-jam/opensesame-plugin-parallel_port_trigger/compare/5.1.1...5.1.2
 [5.1.1]: https://github.com/dev-jam/opensesame-plugin-parallel_port_trigger/compare/5.1.0...5.1.1
 [5.1.0]: https://github.com/dev-jam/opensesame-plugin-parallel_port_trigger/compare/5.0.2...5.1.0
