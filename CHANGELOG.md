@@ -7,6 +7,8 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+- changed: when the InpOut32 driver can't be opened on Windows, the error lists the possible causes: not installed yet (run OpenSesame once as administrator, as before), Memory integrity on, or Windows 11's policy for cross-signed drivers since the April 2026 update; the readme describes these limits of InpOut32
+
 ## [5.1.2] - 2026-11-08
 
 - readme and package description: the settings listed per item (init, send) with their labels, installation with pip, the documentation links go to the parallel port page of the OpenSesame 4.1 manual and use https

@@ -41,6 +41,13 @@ In dummy mode no port is opened, but the items still check their values and wait
 
 Linux and Windows are supported. macOS is not: pyparallel is only installed on Linux and needs the Linux parallel port driver (`/dev/parportX`); only dummy mode works there. On Linux the [pyparallel](https://github.com/pyserial/pyparallel) package is used. On Windows the bundled InpOut32 driver (`inpout32.dll` / `inpoutx64.dll`) is used. This driver is installed the first time it is used, which needs administrator privileges: run OpenSesame once as administrator (see `InpOut32Drv_ReadMe.txt`).
 
+InpOut32 is no longer maintained, and newer versions of Windows may not load its driver:
+
+- *Memory integrity* (Windows Security, Device security, Core isolation details), on by default since Windows 11 22H2: Windows doesn't load the InpOut32 driver while it is on, also not as administrator.
+- Windows 11 24H2 and later: since the April 2026 update, Windows stops trusting cross-signed drivers, such as the InpOut32 driver, once its new driver policy is enforced; only certified drivers and drivers on Microsoft's own list then load.
+
+The init item then stops with the error "The InpOut32 driver could not be opened". On such a computer, a USB trigger interface (e.g. one that shows up as a serial port) is an alternative to the parallel port: it doesn't need InpOut32.
+
 
 Documentation: <https://osdoc.cogsci.nl/4.1/manual/devices/parallel/>
 

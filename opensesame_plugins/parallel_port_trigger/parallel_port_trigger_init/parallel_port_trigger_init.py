@@ -127,9 +127,15 @@ class ParallelPortTriggerInit(Item):
             dll = windll.LoadLibrary(path_to_dll_file)
         except Exception as e:
             raise OSException(f'Could not load parallel port library {path_to_dll_file}\n\nMessage: {e}')
-        # Without the driver, writing to the port silently does nothing
+        # Without the driver, writing to the port silently does nothing. The
+        # DLL doesn't tell why the driver didn't start, so list the causes
         if not dll.IsInpOutDriverOpen():
-            raise OSException('The InpOut32 driver could not be opened. It is installed the first time it is used, which needs administrator privileges: run OpenSesame once as administrator.')
+            raise OSException(
+                'The InpOut32 driver could not be opened. Possible causes:\n\n'
+                '1. The driver is not installed yet. It is installed the first time it is used, which needs administrator privileges: run OpenSesame once as administrator.\n'
+                '2. Memory integrity is on (Windows Security, Device security, Core isolation details). Windows then doesn\'t load the InpOut32 driver, also not as administrator.\n'
+                '3. Windows 11 24H2 and later: since the April 2026 update, Windows can stop loading cross-signed drivers, such as the InpOut32 driver.\n\n'
+                'See the README of the plugin for more information.')
 
         self._show_message(f'Using parallel port on address: {address:#x}')
         return InpOutPort(dll, address)
