@@ -8,6 +8,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 ## [Unreleased]
 
 - readme and package description: the settings listed per item (init, send) with their labels, installation with pip, the documentation links go to the parallel port page of the OpenSesame 4.1 manual and use https
+- item descriptions (shown for new items) say what each item does, in the same form for all items; items in saved experiments keep their description
 
 ## [5.1.1] - 2026-11-06
 
