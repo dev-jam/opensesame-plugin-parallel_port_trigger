@@ -1,7 +1,7 @@
 [tool.poetry]
 name = "opensesame-plugin-parallel_port_trigger"
 version = "5.1.1"
-description = "An OpenSesame Plug-in for sending stimulus synchronization triggers through the parallel port to data acquisition systems"
+description = "OpenSesame plugin for sending triggers through the parallel port to EEG and other data acquisition systems"
 authors = ["Bob Rosbag <mail@bobrosbag.nl>"]
 readme = "README.md"
 packages = [
