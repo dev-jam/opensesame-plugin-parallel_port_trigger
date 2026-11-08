@@ -5,6 +5,11 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
 and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 
+## [5.1.2] - 2026-11-08
+
+- readme and package description: the settings listed per item (init, send) with their labels, installation with pip, the documentation links go to the parallel port page of the OpenSesame 4.1 manual and use https
+- item descriptions (shown for new items) say what each item does, in the same form for all items; items in saved experiments keep their description
+
 ## [5.1.1] - 2026-11-06
 
 - changed: the licence is stated as GPL-3.0-or-later (README, `__license__`); the source files carry a copyright notice instead of the header of the OpenSesame example plugin; the copyright years in the README run from the first release; the authors e-mail is mail@bobrosbag.nl
@@ -146,7 +151,8 @@ Stable release
 first public release
 
 
-[Unreleased]: https://github.com/dev-jam/opensesame-plugin-parallel_port_trigger/compare/5.1.1...HEAD
+[Unreleased]: https://github.com/dev-jam/opensesame-plugin-parallel_port_trigger/compare/5.1.2...HEAD
+[5.1.2]: https://github.com/dev-jam/opensesame-plugin-parallel_port_trigger/compare/5.1.1...5.1.2
 [5.1.1]: https://github.com/dev-jam/opensesame-plugin-parallel_port_trigger/compare/5.1.0...5.1.1
 [5.1.0]: https://github.com/dev-jam/opensesame-plugin-parallel_port_trigger/compare/5.0.2...5.1.0
 [5.0.2]: https://github.com/dev-jam/opensesame-plugin-parallel_port_trigger/compare/5.0.1...5.0.2
